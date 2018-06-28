@@ -1,0 +1,15 @@
+.app-title {
+    font-family: sans-serif;
+    font-size: 20px;
+    margin: 24px;
+    text-align: left;
+}
+
+.app-container {
+    box-sizing: border-box;
+    color: #525252;
+    display: flex;
+    font-family: sans-serif;
+    margin: 16px;
+    padding: 8px;
+}
