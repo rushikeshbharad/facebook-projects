@@ -13,6 +13,7 @@
 .DS_Store
 .env.local
 .env.development.local
+.idea/workspace.xml
 .env.test.local
 .env.production.local
 
