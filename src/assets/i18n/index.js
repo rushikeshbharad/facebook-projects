@@ -9,7 +9,7 @@ const locales = {
 };
 
 const locale = navigator.language.toLocaleLowerCase();
-const stringsJson = locales[locale];
+const stringsJson = locales[locale] || EN;
 
 export const getString = key => {
 	if (stringsJson.hasOwnProperty(key)) {
