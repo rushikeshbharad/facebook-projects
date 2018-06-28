@@ -10,8 +10,8 @@ import ProjectDetails from '../project-details';
 // Action imports
 import { getAllProjects } from '../../actions';
 
-// Constants imports
-import strings from '../../constants/strings';
+// Import i18n string getter
+import { getString } from '../../assets/i18n';
 
 // Styles imports
 import styles from './styles.css';
@@ -26,7 +26,7 @@ class App extends Component {
 	render() {
 		return (
 			<Fragment>
-				<div className={cx('app-title')}>{strings['app_title']}</div>
+				<div className={cx('app-title')}>{getString('app_title')}</div>
 				<div className={cx('app-container')}>
 					<SidebarNavigtion />
 					<ProjectDetails />

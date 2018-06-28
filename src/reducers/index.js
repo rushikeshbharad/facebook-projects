@@ -1,4 +1,4 @@
-import { GET_PROJECT_SUCCESS } from '../constants/action-types';
+import { GET_PROJECT_SUCCESS } from '../assets/constants/action-types';
 import { combineReducers } from 'redux'
 
 const projects = (state = [], action) => {

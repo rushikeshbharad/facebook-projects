@@ -1,4 +1,4 @@
-import { GET_PROJECT_SUCCESS } from '../constants/action-types';
+import { GET_PROJECT_SUCCESS } from '../assets/constants/action-types';
 
 export const getAllProjects = () => dispatch => {
 	fetch('https://api.github.com/users/facebook/repos')
