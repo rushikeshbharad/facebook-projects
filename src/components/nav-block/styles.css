@@ -7,14 +7,18 @@
     padding: 16px;
 }
 
+.nav-block:hover, .nav-block.selected {
+    background-color: #dddddd;
+    color: #0366d6;
+}
+
 .nav-block-project-name {
     font-size: 20px;
     margin-bottom: 8px;
 }
 
-.nav-block:hover, .nav-block.selected {
-    background-color: #dddddd;
-    color: #0366d6;
+.nav-block:hover .nav-block-project-name {
+    text-decoration: underline;
 }
 
 .nav-block-watchers {

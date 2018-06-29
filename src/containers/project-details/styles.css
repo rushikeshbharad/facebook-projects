@@ -1,0 +1,25 @@
+.project-details {
+    padding: 16px;
+    width: calc(100% - 352px);
+}
+
+.project-title, .project-homepage {
+    color: #0366d6;
+    text-decoration: none;
+}
+
+.project-title {
+    display: block;
+    font-size: 24px;
+    margin-bottom: 16px;
+    text-decoration: none;
+}
+
+.project-title:hover, .project-homepage:hover {
+    text-decoration: underline;
+}
+
+.project-description {
+    margin-right: 8px;
+}
+

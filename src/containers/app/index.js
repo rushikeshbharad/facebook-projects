@@ -53,7 +53,9 @@ class App extends Component {
 						selectedProjectIndex={this.state.selectedProjectIndex}
 						updateSelectedProjectIndex={this.updateSelectedProjectIndex}
 					/>
-					<ProjectDetails />
+					{this.props.projects[this.state.selectedProjectIndex] && <ProjectDetails
+						details={this.props.projects[this.state.selectedProjectIndex]}
+					/>}
 				</div>
 			</Fragment>
 		);
