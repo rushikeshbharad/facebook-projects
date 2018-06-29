@@ -1,4 +1,6 @@
 .sidebar-navigator-container {
+    box-sizing: border-box;
     overflow: auto;
+    padding: 0 8px;
     width: 320px;
 }

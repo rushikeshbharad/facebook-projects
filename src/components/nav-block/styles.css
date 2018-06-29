@@ -1,4 +1,27 @@
 .nav-block {
+    background-color: #eeeeee;
+    border-radius: 4px;
     box-sizing: border-box;
-    line-height: 36px;
+    cursor: pointer;
+    margin: 8px 0;
+    padding: 16px;
+}
+
+.nav-block-project-name {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.nav-block:hover, .nav-block.selected {
+    background-color: #dddddd;
+    color: #0366d6;
+}
+
+.nav-block-watchers {
+    display: flex;
+    align-items: center;
+}
+
+.nav-block-star-svg {
+    fill: currentColor;
 }
