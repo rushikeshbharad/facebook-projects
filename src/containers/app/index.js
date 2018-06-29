@@ -40,7 +40,7 @@ class App extends Component {
 	};
 
 	componentDidMount() {
-		getAllProjects()(this.props.dispatch);
+		this.props.dispatch(getAllProjects(1));
 	}
 
 	render() {

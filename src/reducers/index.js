@@ -3,7 +3,7 @@ import { combineReducers } from 'redux'
 
 const projects = (state = [], action) => {
   if (action['type'] === GET_PROJECT_SUCCESS) {
-		return action['payload'];
+		return [...state, ...action['payload']];
 	} else {
 		return state;
 	}
