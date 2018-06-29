@@ -15,6 +15,9 @@
 .nav-block-project-name {
     font-size: 20px;
     margin-bottom: 8px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
 
 .nav-block:hover .nav-block-project-name {
