@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import SidebarNavigation from '../sidebar-navigation';
 import ProjectDetails from '../project-details';
 
-// Action imports
+// Actions import
 import { getAllProjects, getContributors} from '../../actions';
 
 // Import i18n string getter
@@ -28,13 +28,12 @@ class App extends Component {
 		projects: PropTypes.arrayOf(PropTypes.object)
 	};
 
-	constructor(props) {
-		super(props);
-		this.state = {
-			selectedProjectIndex: 0
-		}
-	}
+	state = {
+		selectedProjectIndex: 0
+	};
 
+	// Maintains the index of currently selected project
+	// and dispatches the action to fetch contributors if index has changed
 	updateSelectedProjectIndex = selectedProjectIndex => {
 		if (selectedProjectIndex !== this.state.selectedProjectIndex) {
 			this.props.dispatch(getContributors(this.props.projects[selectedProjectIndex].contributors_url));

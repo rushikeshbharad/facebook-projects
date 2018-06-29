@@ -11,13 +11,24 @@ import styles from './styles.css';
 
 const cx = ClassNames.bind(styles);
 
-const Contributor = props => {
+const Contributor = ({ avatar_url, contributions, html_url, login }) => {
 	return (
 		<div className={cx('contributor-holder')}>
-			<div className={cx('contributor-avatar')} style={{ backgroundImage: `url(${props.avatar_url})` }} />
+			<div
+				className={cx('contributor-avatar')}
+				style={{ backgroundImage: `url(${avatar_url})` }}
+			/>
 			<div className={cx('contributor-info')}>
-				<a href={props.html_url} target="_blank" className={cx('contributor-name')}>{props.login}</a>
-				<span className={cx('contributor-contributions')}>{getString('number_of_contributions', { number: props.contributions })}</span>
+				<a
+					href={html_url}
+					target="_blank"
+					className={cx('contributor-name')}
+				>
+					{login}
+				</a>
+				<span className={cx('contributor-contributions')}>
+					{getString('number_of_contributions', { number: contributions })}
+				</span>
 			</div>
 		</div>
 	);

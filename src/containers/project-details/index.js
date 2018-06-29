@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 import ClassNames from 'classnames/bind';
 import moment from 'moment';
 
-// Import Components
+// Components imports
 import Contributors from '../../components/contributor';
 
-// Import actions
+// Actions imports
 import { getContributors } from '../../actions';
 
 // I18n import
@@ -34,6 +34,10 @@ class ProjectDetails extends Component {
 		})
 	};
 
+	// App container's method "updateSelectedProjectIndex" fetches contributors
+	// only when the index of currently selected project changes.
+	// And does not consider first time render.
+	// Here componentDidMount fetches contributors for initially selected project
 	componentDidMount() {
 		this.props.dispatch(getContributors(this.props.details.contributors_url));
 	}
@@ -54,7 +58,9 @@ class ProjectDetails extends Component {
 						{getString('updated_at', { date: moment(updated_at).format('DD MMM YYYY') })}
 					</span>
 				</div>
-				<div className={cx('contributors-title')}>{getString('contributors_title', { number: this.props.contributors.length })}</div>
+				<div className={cx('contributors-title')}>
+					{getString('contributors_title', { number: this.props.contributors.length })}
+				</div>
 				<div className={cx('contributors')}>
 					{this.props.contributors.map(contributor =>
 						<Contributors key={`contributor-${contributor.login}`} {...contributor} />

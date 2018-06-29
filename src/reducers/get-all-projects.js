@@ -1,8 +1,8 @@
-import { GET_PROJECT_SUCCESS } from '../assets/constants/action-types';
+import { GET_PROJECTS_SUCCESS } from '../assets/constants/action-types';
 
-export const getAllProjects = (state = [], action) => {
-	if (action['type'] === GET_PROJECT_SUCCESS) {
-		return action['payload'];
+export const getAllProjects = (state = [], action = {}) => {
+	if (action.type === GET_PROJECTS_SUCCESS) {
+		return action.payload;
 	} else {
 		return state;
 	}

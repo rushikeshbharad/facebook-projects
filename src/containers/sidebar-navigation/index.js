@@ -24,6 +24,7 @@ class SidebarNavigation extends Component {
 
 	componentDidMount() {
 		// Change size of sidebar navigation depending upon screen size
+		// TODO: figure out the way to fix this only using css
 		window.addEventListener('resize', () => {
 			if (this.screenResizeDebounce) {
 				clearTimeout(this.screenResizeDebounce);
