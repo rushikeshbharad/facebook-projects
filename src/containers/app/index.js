@@ -58,6 +58,8 @@ class App extends Component {
 					/>
 					{this.props.projects[this.state.selectedProjectIndex] && <ProjectDetails
 						details={this.props.projects[this.state.selectedProjectIndex]}
+						contributors={this.props.contributors}
+						dispatch={this.props.dispatch}
 					/>}
 				</div>
 			</Fragment>

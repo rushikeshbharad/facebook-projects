@@ -3,7 +3,7 @@
     width: calc(100% - 352px);
 }
 
-.project-title, .project-homepage {
+.project-title, .project-homepage, .contributor-name {
     color: #0366d6;
     text-decoration: none;
 }
@@ -15,7 +15,7 @@
     text-decoration: none;
 }
 
-.project-title:hover, .project-homepage:hover {
+.project-title:hover, .project-homepage:hover, .contributor-name:hover {
     text-decoration: underline;
 }
 
@@ -28,4 +28,16 @@
     font-size: 14px;
     justify-content: space-between;
     margin: 36px 0;
+}
+
+.contributors {
+    display: flex;
+    flex-wrap: wrap;
+    max-height: 360px;
+    overflow: auto;
+}
+
+.contributors-title {
+    margin-bottom: 16px;
+    font-size: 20px;
 }

@@ -1,5 +1,7 @@
 {
   "app_title": "List of projects owned by Facebook on Github",
   "created_at": "Created at <%=date=%>",
-  "updated_at": "Last updated at <%=date=%>"
+  "updated_at": "Last updated at <%=date=%>",
+  "contributors_title": "Contributors (<%=number=%>)",
+  "number_of_contributions": "<%=number=%> contributions"
 }

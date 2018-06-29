@@ -1,0 +1,42 @@
+.contributor-holder {
+    align-items: center;
+    display: flex;
+    height: 84px;
+    margin: 8px 0;
+    width: 33%;
+}
+
+.contributor-avatar {
+    background-repeat: no-repeat;
+    background-size: contain;
+    border-radius: 32px;
+    height: 64px;
+    margin: 0 16px;
+    width: 64px;
+}
+
+.contributor-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.contributor-name {
+    font-size: 20px;
+    margin-bottom: 8px;
+}
+
+.contributor-contributions {
+    font-size: 14px;
+}
+
+@media only screen and (max-width: 1100px) {
+    .contributor-holder {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .contributor-holder {
+        width: 100%;
+    }
+}
