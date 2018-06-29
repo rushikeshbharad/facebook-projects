@@ -23,7 +23,6 @@ class ProjectDetails extends Component {
 	};
 
 	render() {
-		console.log('projectDetails => ', this.props.details);
 		const { name: title, description, homepage, html_url: gitUrl, created_at, updated_at } = this.props.details;
 
 		return (

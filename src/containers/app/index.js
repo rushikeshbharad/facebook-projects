@@ -5,7 +5,7 @@ import ClassNames from 'classnames/bind';
 import { connect } from 'react-redux';
 
 // Containers imports
-import SidebarNavigtion from '../sidebar-navigation';
+import SidebarNavigation from '../sidebar-navigation';
 import ProjectDetails from '../project-details';
 
 // Action imports
@@ -48,7 +48,7 @@ class App extends Component {
 			<Fragment>
 				<div className={cx('app-title')}>{getString('app_title')}</div>
 				<div className={cx('app-container')}>
-					<SidebarNavigtion
+					<SidebarNavigation
 						projects={this.props.projects}
 						selectedProjectIndex={this.state.selectedProjectIndex}
 						updateSelectedProjectIndex={this.updateSelectedProjectIndex}
