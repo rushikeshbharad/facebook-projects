@@ -23,3 +23,9 @@
     margin-right: 8px;
 }
 
+.project-events {
+    display: flex;
+    font-size: 14px;
+    justify-content: space-between;
+    margin: 36px 0;
+}

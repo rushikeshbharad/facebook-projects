@@ -11,8 +11,14 @@ const locales = {
 const locale = navigator.language.toLocaleLowerCase();
 const stringsJson = locales[locale] || EN;
 
-export const getString = key => {
+export const getString = (key, options = {}) => {
 	if (stringsJson.hasOwnProperty(key)) {
+		if (Object.keys(options).length) {
+			const string = stringsJson[key];
+			return Object.keys(options).reduce((acc, key) => {
+				return acc.replace(`<%=${key}=%>`, options[key])
+			}, string);
+		}
 		return stringsJson[key];
 	}
 
