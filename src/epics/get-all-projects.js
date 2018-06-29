@@ -8,7 +8,6 @@ import { FB_PROJECT_FETCH_URL, MAX_PAGES_FOR_FB_PROJECTS_API } from '../assets/c
 
 export const getAllProjects = action$ => action$.pipe(
 	ofType(GET_PROJECT),
-	map(({ payload }) => payload),
 	mergeMap(() =>
 		from(getAllProjectPromise(FB_PROJECT_FETCH_URL, MAX_PAGES_FOR_FB_PROJECTS_API)).pipe(
 			map(data => getAllProjectsSuccess(data))

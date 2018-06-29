@@ -9,7 +9,7 @@ import SidebarNavigation from '../sidebar-navigation';
 import ProjectDetails from '../project-details';
 
 // Action imports
-import { getAllProjects } from '../../actions';
+import { getAllProjects, getContributors} from '../../actions';
 
 // Import i18n string getter
 import { getString } from '../../assets/i18n';
@@ -36,11 +36,14 @@ class App extends Component {
 	}
 
 	updateSelectedProjectIndex = selectedProjectIndex => {
-		this.setState({ selectedProjectIndex });
+		if (selectedProjectIndex !== this.state.selectedProjectIndex) {
+			this.props.dispatch(getContributors(this.props.projects[selectedProjectIndex].contributors_url));
+			this.setState({ selectedProjectIndex });
+		}
 	};
 
 	componentDidMount() {
-		this.props.dispatch(getAllProjects([1,2,3,4,5,6,7,8,9,10]));
+		this.props.dispatch(getAllProjects());
 	}
 
 	render() {

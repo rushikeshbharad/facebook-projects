@@ -1,8 +1,12 @@
 // Library imports
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux'
 import ClassNames from 'classnames/bind';
 import moment from 'moment';
+
+// Import actions
+import { getContributors } from '../../actions';
 
 // I18n import
 import { getString } from '../../assets/i18n';
@@ -21,6 +25,10 @@ class ProjectDetails extends Component {
 			html_url: PropTypes.string
 		})
 	};
+
+	componentDidMount() {
+		this.props.dispatch(getContributors(this.props.details.contributors_url));
+	}
 
 	render() {
 		const { name: title, description, homepage, html_url: gitUrl, created_at, updated_at } = this.props.details;
@@ -43,4 +51,4 @@ class ProjectDetails extends Component {
 	}
 }
 
-export default ProjectDetails;
+export default connect()(ProjectDetails);
