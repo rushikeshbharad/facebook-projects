@@ -1,13 +1,13 @@
 // Library imports
-import { from } from 'rxjs';
-import { mergeMap, map, takeUntil } from 'rxjs/operators';
+import { from, of } from 'rxjs';
+import { mergeMap, map, takeUntil, catchError } from 'rxjs/operators';
 import { ofType } from 'redux-observable';
 
 // Actions import
 import { getContributorsSuccess } from '../actions';
 
 // Constants import
-import { GET_CONTRIBUTORS, GET_CONTRIBUTORS_CANCEL } from '../assets/constants/action-types';
+import { GET_CONTRIBUTORS, GET_CONTRIBUTORS_CANCEL, GET_CONTRIBUTORS_FAILURE } from '../assets/constants/action-types';
 import { MAX_PAGES_FOR_CONTRIBUTORS_API } from '../assets/constants'
 
 // Helper functions import
@@ -23,5 +23,9 @@ export const getContributors = action$ => action$.pipe(
 				ofType(GET_CONTRIBUTORS_CANCEL)
 			))
 		)
-	)
+	),
+	catchError(error => of({
+		type: GET_CONTRIBUTORS_FAILURE,
+		payload: error
+	}))
 );

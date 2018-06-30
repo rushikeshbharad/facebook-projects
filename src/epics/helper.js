@@ -1,4 +1,4 @@
-export const getAllProjectPromise = (url, pages) => new Promise((resolve) => {
+export const getAllProjectPromise = (url, pages) => new Promise((resolve, reject) => {
 	const executeForSinglePage = (page, totalResponse) => {
 		if (page > pages) {
 			// Resolve total response if current page has exceeded
@@ -8,19 +8,19 @@ export const getAllProjectPromise = (url, pages) => new Promise((resolve) => {
 
 		// Added parameters to URL for 100 entries per page, index of page and member type
 		fetch(`${url}?per_page=100&page=${page}&type=owner`)
-			.then(
-				r => r.json(),
-				() => resolve(totalResponse)
-			)
+			.then(r => {
+				if (r.ok) {
+					return r.json()
+				}
+
+				reject(r.url);
+			})
 			.then((r = []) => {
 				if (!r.length) {
 					// Resolve total response if empty data has started coming
 					return resolve(totalResponse);
 				}
 				executeForSinglePage(page + 1, [...totalResponse, ...r]);
-			}, () => {
-				// Resolve the archived response if API fails in between
-				resolve(totalResponse);
 			});
 	};
 

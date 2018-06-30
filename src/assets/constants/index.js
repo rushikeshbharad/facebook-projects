@@ -28,3 +28,9 @@ export const NAME = 'name';
 export const UPDATED_AT = 'updated_at';
 export const WATCHERS = 'watchers';
 export const WATCHERS_COUNT = 'watchers_count';
+
+// API statuses
+export const FETCHING = 'fetching';
+export const SUCCESS = 'success';
+export const FAILURE = 'failure';
+export const CANCELLED = 'cancelled';

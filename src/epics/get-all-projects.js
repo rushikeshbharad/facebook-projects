@@ -1,10 +1,10 @@
 // Library imports
-import { from } from 'rxjs';
-import { mergeMap, map } from 'rxjs/operators';
+import { from, of } from 'rxjs';
+import { mergeMap, map, catchError } from 'rxjs/operators';
 import { ofType } from 'redux-observable';
 
 // Constants import
-import { GET_PROJECTS } from '../assets/constants/action-types';
+import { GET_PROJECTS, GET_PROJECTS_FAILURE } from '../assets/constants/action-types';
 import { FB_PROJECT_FETCH_URL, MAX_PAGES_FOR_FB_PROJECTS_API } from '../assets/constants'
 
 // Actions import
@@ -19,5 +19,9 @@ export const getAllProjects = action$ => action$.pipe(
 		from(getAllProjectPromise(FB_PROJECT_FETCH_URL, MAX_PAGES_FOR_FB_PROJECTS_API)).pipe(
 			map(data => getAllProjectsSuccess(data))
 		)
-	)
+	),
+	catchError(error => of({
+		type: GET_PROJECTS_FAILURE,
+		payload: error
+	}))
 );

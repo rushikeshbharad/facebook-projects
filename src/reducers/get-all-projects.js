@@ -1,10 +1,23 @@
 import { fromJS } from 'immutable';
-import { GET_PROJECTS_SUCCESS } from '../assets/constants/action-types';
+import { GET_PROJECTS, GET_PROJECTS_SUCCESS, GET_PROJECTS_FAILURE } from '../assets/constants/action-types';
+import { FAILURE, FETCHING, SUCCESS } from '../assets/constants';
 
 export const getAllProjects = (state = [], action = {}) => {
 	if (action.type === GET_PROJECTS_SUCCESS) {
 		return fromJS(action.payload);
-	} else {
-		return fromJS(state);
 	}
+
+	return fromJS(state);
+};
+
+export const getProjectsStatus = (state = '', action = {}) => {
+	if (action.type === GET_PROJECTS) {
+		return FETCHING;
+	} else if (action.type === GET_PROJECTS_SUCCESS) {
+		return SUCCESS;
+	} else if (action.type === GET_PROJECTS_FAILURE) {
+		return FAILURE;
+	}
+
+	return state;
 };
