@@ -33,7 +33,7 @@ class SidebarNavigation extends Component {
 				this.setState({
 					maxHeight: window.innerHeight - 70
 				});
-			});
+			}, 300);
 		});
 	}
 

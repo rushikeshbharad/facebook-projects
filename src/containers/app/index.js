@@ -9,7 +9,11 @@ import SidebarNavigation from '../sidebar-navigation';
 import ProjectDetails from '../project-details';
 
 // Actions import
-import { getAllProjects, getContributors} from '../../actions';
+import {
+	getAllProjects,
+	getContributors,
+	getContributorsCancel
+} from '../../actions';
 
 // Import i18n string getter
 import { getString } from '../../assets/i18n';
@@ -36,6 +40,9 @@ class App extends Component {
 	// and dispatches the action to fetch contributors if index has changed
 	updateSelectedProjectIndex = selectedProjectIndex => {
 		if (selectedProjectIndex !== this.state.selectedProjectIndex) {
+			// Cancel contribution fetching if currently going on
+			this.props.dispatch(getContributorsCancel());
+			// Then fetch contributors for newly selected project
 			this.props.dispatch(getContributors(this.props.projects[selectedProjectIndex].contributors_url));
 			this.setState({ selectedProjectIndex });
 		}
