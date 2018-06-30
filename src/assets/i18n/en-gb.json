@@ -3,5 +3,8 @@
   "created_at": "Created at <%=date=%>",
   "updated_at": "Last updated at <%=date=%>",
   "contributors_title": "Contributors (<%=number=%>)",
-  "number_of_contributions": "<%=number=%> contributions"
+  "number_of_contributions": "<%=number=%> contributions",
+  "number_of_contributors": "<%=number=%> contributors",
+  "number_of_watchers": "<%=number=%> watchers",
+  "number_of_forks": "<%=number=%> forks"
 }
