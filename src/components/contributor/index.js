@@ -11,16 +11,16 @@ import styles from './styles.css';
 
 const cx = ClassNames.bind(styles);
 
-const Contributor = ({ avatar_url, contributions, html_url, login }) => {
+const Contributor = ({ avatarUrl, contributions, htmlUrl, login }) => {
 	return (
 		<div className={cx('contributor-holder')}>
 			<div
 				className={cx('contributor-avatar')}
-				style={{ backgroundImage: `url(${avatar_url})` }}
+				style={{ backgroundImage: `url(${avatarUrl})` }}
 			/>
 			<div className={cx('contributor-info')}>
 				<a
-					href={html_url}
+					href={htmlUrl}
 					target="_blank"
 					className={cx('contributor-name')}
 				>
@@ -35,7 +35,7 @@ const Contributor = ({ avatar_url, contributions, html_url, login }) => {
 };
 
 Contributor.propTypes = {
-	avatar_url: PropsTypes.string,
+	avatarUrl: PropsTypes.string,
 	login: PropsTypes.string,
 	contributions: PropsTypes.number,
 	html_url: PropsTypes.string

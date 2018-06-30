@@ -7,6 +7,7 @@
 .project-title, .project-homepage, .contributor-name {
     color: #0366d6;
     text-decoration: none;
+    width: fit-content;
 }
 
 .project-title {

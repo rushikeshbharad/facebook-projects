@@ -3,6 +3,7 @@ import React, {Component, Fragment} from 'react';
 import PropTypes from 'prop-types';
 import ClassNames from 'classnames/bind';
 import { connect } from 'react-redux';
+import { List } from 'immutable';
 
 // Components imports
 import { Mobile, Desktop } from '../../components/reponsive';
@@ -28,7 +29,7 @@ const cx = ClassNames.bind(styles);
 
 class App extends Component {
 	static defaultProps = {
-		projects: []
+		projects: List()
 	};
 
 	static propTypes = {
@@ -48,7 +49,7 @@ class App extends Component {
 				// Cancel contribution fetching if currently going on
 				this.props.dispatch(getContributorsCancel());
 				// Then fetch contributors for newly selected project
-				this.props.dispatch(getContributors(this.props.projects[selectedProjectIndex].contributors_url));
+				this.props.dispatch(getContributors(this.props.projects.getIn([selectedProjectIndex, 'contributors_url'])));
 			}
 			this.setState({ selectedProjectIndex });
 		}
@@ -69,9 +70,9 @@ class App extends Component {
 							selectedProjectIndex={this.state.selectedProjectIndex}
 							updateSelectedProjectIndex={index => this.updateSelectedProjectIndex(index, true)}
 						/>
-						{this.props.projects[this.state.selectedProjectIndex] && (
+						{this.props.projects.get(this.state.selectedProjectIndex) && (
 							<ProjectDetails
-								details={this.props.projects[this.state.selectedProjectIndex]}
+								details={this.props.projects.get(this.state.selectedProjectIndex)}
 								contributors={this.props.contributors}
 								dispatch={this.props.dispatch}
 							/>
@@ -89,10 +90,10 @@ class App extends Component {
 							/>
 						)}
 						{!this.state.isShowingList
-							&& this.props.projects[this.state.selectedProjectIndex]
+							&& this.props.projects.get(this.state.selectedProjectIndex)
 							&& (
 								<ProjectDetails
-									details={this.props.projects[this.state.selectedProjectIndex]}
+									details={this.props.projects.get(this.state.selectedProjectIndex)}
 									contributors={this.props.contributors}
 									dispatch={this.props.dispatch}
 									backNavigationHandler={() => {

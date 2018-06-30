@@ -1,11 +1,12 @@
+import { fromJS, List } from 'immutable';
 import { GET_CONTRIBUTORS_CANCEL, GET_CONTRIBUTORS_SUCCESS } from '../assets/constants/action-types';
 
 export const getContributors = (state = [], action = {}) => {
 	if (action.type === GET_CONTRIBUTORS_SUCCESS) {
-		return action.payload;
+		return fromJS(action.payload);
 	} else if (action.type === GET_CONTRIBUTORS_CANCEL) {
-		return [];
+		return List();
 	} else {
-		return state;
+		return fromJS(state);
 	}
 };

@@ -43,8 +43,8 @@ class SidebarNavigation extends Component {
 				{this.props.projects.map((project, i) =>
 					<NavBlock
 						key={`nav-block-${i}`}
-						projectName={project.name}
-						watchers={project.watchers}
+						projectName={project.get('name')}
+						watchers={project.get('watchers')}
 						selected={this.props.selectedProjectIndex === i}
 						onSelect={() => {
 							this.props.updateSelectedProjectIndex(i);
