@@ -53,4 +53,8 @@
         height: 48px;
         width: 48px;
     }
+
+    .contributor-info {
+        width: calc(100% - 80px);
+    }
 }
