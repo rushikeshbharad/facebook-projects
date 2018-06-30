@@ -1,5 +1,6 @@
 // Library imports
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ClassNames from 'classnames/bind';
 import { connect } from 'react-redux';
@@ -7,6 +8,7 @@ import { List } from 'immutable';
 
 // Components imports
 import { Mobile, Desktop } from '../../components/reponsive';
+import Spinner from '../../components/spinner';
 
 // Containers imports
 import SidebarNavigation from '../sidebar-navigation';
@@ -23,7 +25,7 @@ import {
 import { getString } from '../../assets/i18n';
 
 // Import constants
-import { CONTRIBUTORS_URL } from '../../assets/constants';
+import { CONTRIBUTORS_URL, FAILURE, FETCHING, SUCCESS } from '../../assets/constants';
 
 // Styles imports
 import styles from './styles.css';
@@ -36,7 +38,10 @@ class App extends Component {
 	};
 
 	static propTypes = {
-		projects: ImmutablePropTypes.listOf(ImmutablePropTypes.map)
+		projects: ImmutablePropTypes.listOf(ImmutablePropTypes.map),
+		projectsStatus: PropTypes.string,
+		contributors: ImmutablePropTypes.listOf(ImmutablePropTypes.map),
+		contributorsStatus: PropTypes.string,
 	};
 
 	state = {
@@ -62,54 +67,81 @@ class App extends Component {
 		this.props.dispatch(getAllProjects());
 	}
 
-	render() {
+	// Render sidebar and project details side by side when screen width is greater than 600
+	renderDesktopContent() {
 		return (
-			<Fragment>
-				<div className={cx('app-title')}>{getString('app_title')}</div>
-				<div className={cx('app-container')}>
-					{/* Render sidebar and project details side by side when screen width is greater than 600 */}
-					<Desktop>
-						<SidebarNavigation
-							projects={this.props.projects}
-							selectedProjectIndex={this.state.selectedProjectIndex}
-							updateSelectedProjectIndex={index => this.updateSelectedProjectIndex(index, true)}
-						/>
-						{this.props.projects.get(this.state.selectedProjectIndex) && (
-							<ProjectDetails
-								details={this.props.projects.get(this.state.selectedProjectIndex)}
-								contributors={this.props.contributors}
-								dispatch={this.props.dispatch}
-							/>
-						)}
-					</Desktop>
-					{/* Render either sidebar or project details on screen when screen width is less than 601 */}
-					<Mobile>
-						{this.state.isShowingList && (
-							<SidebarNavigation
-								projects={this.props.projects}
-								selectedProjectIndex={this.state.selectedProjectIndex}
-								updateSelectedProjectIndex={index => {
-									this.updateSelectedProjectIndex(index, false);
-									this.setState({ isShowingList: false });
-								}}
-							/>
-						)}
-						{!this.state.isShowingList
-							&& this.props.projects.get(this.state.selectedProjectIndex)
-							&& (
-								<ProjectDetails
-									details={this.props.projects.get(this.state.selectedProjectIndex)}
-									contributors={this.props.contributors}
-									dispatch={this.props.dispatch}
-									backNavigationHandler={() => {
-										this.setState({ isShowingList: true });
-									}}
-								/>
-						)}
-					</Mobile>
-				</div>
-			</Fragment>
+			<Desktop>
+				<SidebarNavigation
+					projects={this.props.projects}
+					selectedProjectIndex={this.state.selectedProjectIndex}
+					updateSelectedProjectIndex={index => this.updateSelectedProjectIndex(index, true)}
+				/>
+				{this.props.projects.get(this.state.selectedProjectIndex) && (
+					<ProjectDetails
+						details={this.props.projects.get(this.state.selectedProjectIndex)}
+						contributors={this.props.contributors}
+						dispatch={this.props.dispatch}
+						contributorsStatus={this.props.contributorsStatus}
+					/>
+				)}
+			</Desktop>
 		);
+	}
+
+	// Render either sidebar or project details on screen when screen width is less than 601
+	renderMobileContent() {
+		return (
+			<Mobile>
+				{this.state.isShowingList && (
+					<SidebarNavigation
+						projects={this.props.projects}
+						selectedProjectIndex={this.state.selectedProjectIndex}
+						updateSelectedProjectIndex={index => {
+							this.updateSelectedProjectIndex(index, false);
+							this.setState({ isShowingList: false });
+						}}
+					/>
+				)}
+				{!this.state.isShowingList
+				&& this.props.projects.get(this.state.selectedProjectIndex)
+				&& (
+					<ProjectDetails
+						details={this.props.projects.get(this.state.selectedProjectIndex)}
+						contributors={this.props.contributors}
+						dispatch={this.props.dispatch}
+						contributorsStatus={this.props.contributorsStatus}
+						backNavigationHandler={() => {
+							this.setState({ isShowingList: true });
+						}}
+					/>
+				)}
+			</Mobile>
+		)
+	}
+
+	render() {
+		if (this.props.projectsStatus === FAILURE) {
+			// handle failure
+			return '';
+		}
+
+		if (this.props.projectsStatus === FETCHING) {
+			return <Spinner />;
+		}
+
+		if (this.props.projectsStatus === SUCCESS) {
+			return (
+				<Fragment>
+					<div className={cx('app-title')}>{getString('app_title')}</div>
+					<div className={cx('app-container')}>
+						{this.renderDesktopContent()}
+						{this.renderMobileContent()}
+					</div>
+				</Fragment>
+			);
+		}
+
+		return null;
 	}
 }
 

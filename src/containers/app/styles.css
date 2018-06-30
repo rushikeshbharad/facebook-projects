@@ -1,3 +1,7 @@
+#root {
+    color: #525252;
+}
+
 .app-title {
     font-family: sans-serif;
     font-size: 20px;
@@ -7,7 +11,6 @@
 
 .app-container {
     box-sizing: border-box;
-    color: #525252;
     display: flex;
     font-family: sans-serif;
     margin: 16px;

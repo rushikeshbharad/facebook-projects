@@ -53,6 +53,10 @@
     font-size: 20px;
 }
 
+.contributors-spinner {
+    max-height: 360px;
+}
+
 .back-navigator-top {
     margin-bottom: 12px;
 }

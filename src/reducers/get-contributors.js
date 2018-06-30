@@ -7,7 +7,7 @@ import {
 } from '../assets/constants/action-types';
 import { CANCELLED, FAILURE, FETCHING, SUCCESS } from '../assets/constants';
 
-export const getContributors = (state = [], action = {}) => {
+export const getContributors = (state = List(), action = {}) => {
 	if (action.type === GET_CONTRIBUTORS_SUCCESS) {
 		return fromJS(action.payload);
 	} else if (action.type === GET_CONTRIBUTORS_FAILURE) {
@@ -16,10 +16,10 @@ export const getContributors = (state = [], action = {}) => {
 		return List();
 	}
 
-	return fromJS(state);
+	return state;
 };
 
-export const getContributorsStatus = (state = [], action = {}) => {
+export const getContributorsStatus = (state = '', action = {}) => {
 	if (action.type === GET_CONTRIBUTORS) {
 		return FETCHING;
 	} else if (action.type === GET_CONTRIBUTORS_SUCCESS) {
