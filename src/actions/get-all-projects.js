@@ -15,6 +15,7 @@ export const getAllProjectsSuccess = response => {
 		if (p1.watchers > p2.watchers) {
 			return -1;
 		}
+
 		return 0;
 	});
 

@@ -47,13 +47,19 @@ class App extends Component {
 
 	state = {
 		selectedProjectIndex: 0,
+		// We display either project list or project detail screen on mobile view
+		// isShowingList state helps us to decide which screen should be shown
 		isShowingList: true
 	};
 
-	// Maintains the index of currently selected project
-	// and dispatches the action to fetch contributors if index has changed
+	// updateSelectedProjectIndex Maintains the index of currently selected project
+	// and dispatches the action to fetch contributors if index has been changed
 	updateSelectedProjectIndex = (selectedProjectIndex, shouldFetch) => {
 		if (selectedProjectIndex !== this.state.selectedProjectIndex) {
+			// Should fetch contributors for desktop screen
+			// Reason:
+			// - Mobile screen shows either project list or project details
+			// - Hence contributors data will be fetched by ProjectDetails component on mounting each time
 			if (shouldFetch) {
 				// Cancel contribution fetching if currently going on
 				this.props.dispatch(getContributorsCancel());

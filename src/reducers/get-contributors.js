@@ -10,9 +10,13 @@ import { CANCELLED, FAILURE, FETCHING, SUCCESS } from '../assets/constants';
 export const getContributors = (state = List(), action = {}) => {
 	if (action.type === GET_CONTRIBUTORS_SUCCESS) {
 		return fromJS(action.payload);
-	} else if (action.type === GET_CONTRIBUTORS_FAILURE) {
+	}
+
+	if (action.type === GET_CONTRIBUTORS_FAILURE) {
 		return List();
-	} else if (action.type === GET_CONTRIBUTORS_CANCEL) {
+	}
+
+	if (action.type === GET_CONTRIBUTORS_CANCEL) {
 		return List();
 	}
 
@@ -22,11 +26,17 @@ export const getContributors = (state = List(), action = {}) => {
 export const getContributorsStatus = (state = '', action = {}) => {
 	if (action.type === GET_CONTRIBUTORS) {
 		return FETCHING;
-	} else if (action.type === GET_CONTRIBUTORS_SUCCESS) {
+	}
+
+	if (action.type === GET_CONTRIBUTORS_SUCCESS) {
 		return SUCCESS;
-	} else if (action.type === GET_CONTRIBUTORS_FAILURE) {
+	}
+
+	if (action.type === GET_CONTRIBUTORS_FAILURE) {
 		return FAILURE;
-	} else if (action.type === GET_CONTRIBUTORS_CANCEL) {
+	}
+
+	if (action.type === GET_CONTRIBUTORS_CANCEL) {
 		return CANCELLED;
 	}
 

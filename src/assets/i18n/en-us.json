@@ -8,5 +8,6 @@
   "number_of_watchers": "<%=number=%> watchers",
   "number_of_forks": "<%=number=%> forks",
   "project_fetch_failure": "Something went wrong, not able to fetch projects",
-  "contributors_fetch_failure": "Something went wrong, not able to fetch contributors"
+  "contributors_fetch_failure": "Something went wrong, not able to fetch contributors",
+  "default_failure_text": "Something went wrong"
 }

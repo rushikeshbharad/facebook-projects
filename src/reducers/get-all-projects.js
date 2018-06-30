@@ -13,9 +13,13 @@ export const getAllProjects = (state = [], action = {}) => {
 export const getProjectsStatus = (state = '', action = {}) => {
 	if (action.type === GET_PROJECTS) {
 		return FETCHING;
-	} else if (action.type === GET_PROJECTS_SUCCESS) {
+	}
+
+	if (action.type === GET_PROJECTS_SUCCESS) {
 		return SUCCESS;
-	} else if (action.type === GET_PROJECTS_FAILURE) {
+	}
+
+	if (action.type === GET_PROJECTS_FAILURE) {
 		return FAILURE;
 	}
 

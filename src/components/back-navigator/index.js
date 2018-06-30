@@ -8,7 +8,7 @@ import styles from './styles.css';
 
 const cx  = ClassNames.bind(styles);
 
-const BackNavigator = ({ onClick, classNames }) => (
+const BackNavigator = ({ onClick = () => {}, classNames }) => (
 	<div className={cx('back-navigator', classNames)} onClick={onClick}>
 		{'<'}
 	</div>
@@ -17,10 +17,6 @@ const BackNavigator = ({ onClick, classNames }) => (
 BackNavigator.propTypes = {
 	onClick: PropTypes.func,
 	classNames: PropTypes.string
-};
-
-BackNavigator.defaultProps = {
-	onClick: () => {}
 };
 
 export default BackNavigator;

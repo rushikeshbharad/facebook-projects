@@ -67,11 +67,10 @@ class ProjectDetails extends Component {
 		dispatch: PropTypes.func
 	};
 
-	// App container's method "updateSelectedProjectIndex" fetches contributors
-	// only when the index of currently selected project changes.
-	// And does not consider first time render.
-	// Here componentDidMount fetches contributors for initially selected project
 	componentDidMount() {
+		// If contributors are being fetched at the moment,
+		// and next fetch call yet to happen
+		// Then, cancel the previous contributor fetch call
 		this.props.dispatch(getContributorsCancel());
 		this.props.dispatch(getContributors(this.props.details.get(CONTRIBUTORS_URL)));
 	}

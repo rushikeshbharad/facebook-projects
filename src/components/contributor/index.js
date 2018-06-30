@@ -11,28 +11,26 @@ import styles from './styles.css';
 
 const cx = ClassNames.bind(styles);
 
-const Contributor = ({ avatarUrl, contributions, htmlUrl, login }) => {
-	return (
-		<div className={cx('contributor-holder')}>
-			<div
-				className={cx('contributor-avatar')}
-				style={{ backgroundImage: `url(${avatarUrl})` }}
-			/>
-			<div className={cx('contributor-info')}>
-				<a
-					href={htmlUrl}
-					target="_blank"
-					className={cx('contributor-name')}
-				>
-					{login}
-				</a>
-				<span className={cx('contributor-contributions')}>
-					{getString('number_of_contributions', { number: contributions })}
-				</span>
-			</div>
+const Contributor = ({ avatarUrl, contributions, htmlUrl, login }) => (
+	<div className={cx('contributor-holder')}>
+		<div
+			className={cx('contributor-avatar')}
+			style={{ backgroundImage: `url(${avatarUrl})` }}
+		/>
+		<div className={cx('contributor-info')}>
+			<a
+				href={htmlUrl}
+				target="_blank"
+				className={cx('contributor-name')}
+			>
+				{login}
+			</a>
+			<span className={cx('contributor-contributions')}>
+				{getString('number_of_contributions', { number: contributions })}
+			</span>
 		</div>
-	);
-};
+	</div>
+);
 
 Contributor.propTypes = {
 	avatarUrl: PropsTypes.string,

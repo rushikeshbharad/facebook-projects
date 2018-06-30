@@ -18,6 +18,7 @@ export const getString = (key, options = {}) => {
 		// If options is not a empty object,
 		// it means the key is looking for a dynamic string.
 		// Below code adds support for creation of dynamic strings
+		// TODO: should we take an action if <%=key=%> remains after execution of below code?
 		if (Object.keys(options).length) {
 			const string = stringsJson[key];
 			return Object.keys(options).reduce((acc, key) => {
