@@ -1,0 +1,28 @@
+.project-info-tab-holder {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: 8px 0;
+    width: 25%;
+}
+
+.project-info-svg {
+    fill: currentColor;
+    margin-right: 4px;
+}
+
+.project-info-with-count {
+    font-size: 14px;
+}
+
+@media only screen and (max-width: 1000px) {
+    .project-info-tab-holder {
+        width: 33%;
+    }
+}
+
+@media only screen and (max-width: 850px) {
+    .project-info-tab-holder {
+        width: 50%;
+    }
+}

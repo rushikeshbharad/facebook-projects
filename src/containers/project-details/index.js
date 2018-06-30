@@ -6,12 +6,21 @@ import moment from 'moment';
 
 // Components imports
 import Contributors from '../../components/contributor';
+import ProjectInfoTab from '../../components/project-info-tab';
 
 // Actions imports
 import { getContributors } from '../../actions';
 
 // I18n import
 import { getString } from '../../assets/i18n';
+
+// Constants import
+import {
+	SVG_PATH_WATCHERS,
+	SVG_PATH_FORKS,
+	SVG_PATH_CONTRIBUTORS,
+	SVG_PATH_PROGRAMMING_LANGUAGE
+} from '../../assets/constants';
 
 // Styles imports
 import styles from './styles.css';
@@ -43,7 +52,17 @@ class ProjectDetails extends Component {
 	}
 
 	render() {
-		const { full_name: title, description, homepage, html_url: gitUrl, created_at, updated_at } = this.props.details;
+		const { details: {
+			full_name: title,
+			description,
+			homepage,
+			html_url: gitUrl,
+			created_at,
+			updated_at,
+			watchers_count,
+			forks_count,
+			language
+		}, contributors } = this.props;
 
 		return (
 			<div className={cx('project-details')}>
@@ -58,11 +77,29 @@ class ProjectDetails extends Component {
 						{getString('updated_at', { date: moment(updated_at).format('DD MMM YYYY') })}
 					</span>
 				</div>
+				<div className={cx('project-info')}>
+					<ProjectInfoTab
+						info={getString('number_of_watchers', { number: watchers_count })}
+						path={SVG_PATH_WATCHERS}
+					/>
+					<ProjectInfoTab
+						info={getString('number_of_forks', { number: forks_count })}
+						path={SVG_PATH_FORKS}
+					/>
+					<ProjectInfoTab
+						info={getString('number_of_contributors', { number: contributors.length })}
+						path={SVG_PATH_CONTRIBUTORS}
+					/>
+					<ProjectInfoTab
+						info={language}
+						path={SVG_PATH_PROGRAMMING_LANGUAGE}
+					/>
+				</div>
 				<div className={cx('contributors-title')}>
-					{getString('contributors_title', { number: this.props.contributors.length })}
+					{getString('contributors_title', { number: contributors.length })}
 				</div>
 				<div className={cx('contributors')}>
-					{this.props.contributors.map(contributor =>
+					{contributors.map(contributor =>
 						<Contributors key={`contributor-${contributor.login}`} {...contributor} />
 					)}
 				</div>
