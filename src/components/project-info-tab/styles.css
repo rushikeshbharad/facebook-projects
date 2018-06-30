@@ -1,5 +1,6 @@
 .project-info-tab-holder {
     align-items: center;
+    box-sizing: border-box;
     display: flex;
     justify-content: center;
     margin: 8px 0;
@@ -23,6 +24,13 @@
 
 @media only screen and (max-width: 850px) {
     .project-info-tab-holder {
+        width: 50%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    .project-info-tab-holder {
+        padding-left: 4px;
         width: 50%;
     }
 }

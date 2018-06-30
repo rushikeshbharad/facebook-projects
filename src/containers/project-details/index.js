@@ -7,9 +7,11 @@ import moment from 'moment';
 // Components imports
 import Contributors from '../../components/contributor';
 import ProjectInfoTab from '../../components/project-info-tab';
+import { Mobile } from '../../components/reponsive';
+import BackNavogator from '../../components/back-navigator';
 
 // Actions imports
-import { getContributors } from '../../actions';
+import { getContributors, getContributorsCancel } from '../../actions';
 
 // I18n import
 import { getString } from '../../assets/i18n';
@@ -48,6 +50,7 @@ class ProjectDetails extends Component {
 	// And does not consider first time render.
 	// Here componentDidMount fetches contributors for initially selected project
 	componentDidMount() {
+		this.props.dispatch(getContributorsCancel());
 		this.props.dispatch(getContributors(this.props.details.contributors_url));
 	}
 
@@ -62,10 +65,13 @@ class ProjectDetails extends Component {
 			watchers_count,
 			forks_count,
 			language
-		}, contributors } = this.props;
+		}, contributors, backNavigationHandler } = this.props;
 
 		return (
 			<div className={cx('project-details')}>
+				<Mobile>
+					<BackNavogator classNames={cx('back-navigator-top')} onClick={ backNavigationHandler } />
+				</Mobile>
 				<a href={gitUrl} target="_blank" className={cx('project-title')}>{title}</a>
 				{description && <span className={cx('project-description')}>{description}</span>}
 				{homepage && <a href={homepage} target="_blank" className={cx('project-homepage')}>{homepage}</a>}
@@ -73,7 +79,7 @@ class ProjectDetails extends Component {
 					<span className={cx('project-created-at')}>
 						{getString('created_at', { date: moment(created_at).format('DD MMM YYYY') })}
 					</span>
-					<span className={cx('project-created-at')}>
+					<span className={cx('project-updated-at')}>
 						{getString('updated_at', { date: moment(updated_at).format('DD MMM YYYY') })}
 					</span>
 				</div>
@@ -103,6 +109,9 @@ class ProjectDetails extends Component {
 						<Contributors key={`contributor-${contributor.login}`} {...contributor} />
 					)}
 				</div>
+				<Mobile>
+					<BackNavogator classNames={cx('back-navigator-bottom')} onClick={ backNavigationHandler } />
+				</Mobile>
 			</div>
 		);
 	}

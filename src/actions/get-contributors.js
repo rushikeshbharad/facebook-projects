@@ -2,7 +2,7 @@ import {
 	GET_CONTRIBUTORS_SUCCESS,
 	GET_CONTRIBUTORS,
 	GET_CONTRIBUTORS_CANCEL
-} from "../assets/constants/action-types";
+} from '../assets/constants/action-types';
 
 export const getContributors = payload => ({
 	type: GET_CONTRIBUTORS,
