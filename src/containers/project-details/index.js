@@ -18,10 +18,23 @@ import { getString } from '../../assets/i18n';
 
 // Constants import
 import {
-	SVG_PATH_WATCHERS,
-	SVG_PATH_FORKS,
+	AVATAR_URL,
+	CONTRIBUTORS_URL,
+	CONTRIBUTIONS,
+	CREATED_AT,
+	DESCRIPTION,
+	FORKS_COUNT,
+	FULL_NAME,
+	HOMEPAGE,
+	HTML_URL,
+	LANGUAGE,
+	LOGIN,
 	SVG_PATH_CONTRIBUTORS,
-	SVG_PATH_PROGRAMMING_LANGUAGE
+	SVG_PATH_FORKS,
+	SVG_PATH_PROGRAMMING_LANGUAGE,
+	SVG_PATH_WATCHERS,
+	UPDATED_AT,
+	WATCHERS_COUNT
 } from '../../assets/constants';
 
 // Styles imports
@@ -51,20 +64,20 @@ class ProjectDetails extends Component {
 	// Here componentDidMount fetches contributors for initially selected project
 	componentDidMount() {
 		this.props.dispatch(getContributorsCancel());
-		this.props.dispatch(getContributors(this.props.details.get('contributors_url')));
+		this.props.dispatch(getContributors(this.props.details.get(CONTRIBUTORS_URL)));
 	}
 
 	render() {
 		const { details, contributors, backNavigationHandler } = this.props;
-		const title = details.get('full_name');
-		const description = details.get('description');
-		const homepage = details.get('homepage');
-		const gitUrl = details.get('html_url');
-		const createdAt = details.get('created_at');
-		const updatedAt = details.get('updated_at');
-		const watchersCount = details.get('watchers_count');
-		const forksCount = details.get('forks_count');
-		const programmingLanguage = details.get('language');
+		const title = details.get(FULL_NAME);
+		const description = details.get(DESCRIPTION);
+		const homepage = details.get(HOMEPAGE);
+		const gitUrl = details.get(HTML_URL);
+		const createdAt = details.get(CREATED_AT);
+		const updatedAt = details.get(UPDATED_AT);
+		const watchersCount = details.get(WATCHERS_COUNT);
+		const forksCount = details.get(FORKS_COUNT);
+		const programmingLanguage = details.get(LANGUAGE);
 
 		return (
 			<div className={cx('project-details')}>
@@ -76,10 +89,10 @@ class ProjectDetails extends Component {
 				{homepage && <a href={homepage} target="_blank" className={cx('project-homepage')}>{homepage}</a>}
 				<div className={cx('project-events')}>
 					<span className={cx('project-created-at')}>
-						{getString('created_at', { date: moment(createdAt).format('DD MMM YYYY') })}
+						{getString(CREATED_AT, { date: moment(createdAt).format('DD MMM YYYY') })}
 					</span>
 					<span className={cx('project-updated-at')}>
-						{getString('updated_at', { date: moment(updatedAt).format('DD MMM YYYY') })}
+						{getString(UPDATED_AT, { date: moment(updatedAt).format('DD MMM YYYY') })}
 					</span>
 				</div>
 				<div className={cx('project-info')}>
@@ -106,11 +119,11 @@ class ProjectDetails extends Component {
 				<div className={cx('contributors')}>
 					{contributors.map(contributor =>
 						<Contributors
-							key={`contributor-${contributor.get('login')}`}
-							avatarUrl={contributor.get('avatar_url')}
-							contributions={contributor.get('contributions')}
-							htmlUrl={contributor.get('html_url')}
-							login={contributor.get('login')}
+							key={`contributor-${contributor.get(LOGIN)}`}
+							avatarUrl={contributor.get(AVATAR_URL)}
+							contributions={contributor.get(CONTRIBUTIONS)}
+							htmlUrl={contributor.get(HTML_URL)}
+							login={contributor.get(LOGIN)}
 						/>
 					)}
 				</div>

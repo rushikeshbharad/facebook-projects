@@ -6,7 +6,7 @@ const Mobile = ({ children }) => (
 );
 
 const Desktop = ({ children }) => (
-	<MediaQuery query="(min-device-width: 481px)">{children}</MediaQuery>
+	<MediaQuery query="(min-device-width: 601px)">{children}</MediaQuery>
 );
 
 export {

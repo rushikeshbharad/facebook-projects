@@ -1,5 +1,5 @@
 // Library imports
-import React, {Component, Fragment} from 'react';
+import React, { Component, Fragment } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ClassNames from 'classnames/bind';
 import { connect } from 'react-redux';
@@ -21,6 +21,9 @@ import {
 
 // Import i18n string getter
 import { getString } from '../../assets/i18n';
+
+// Import constants
+import { CONTRIBUTORS_URL } from '../../assets/constants';
 
 // Styles imports
 import styles from './styles.css';
@@ -49,7 +52,7 @@ class App extends Component {
 				// Cancel contribution fetching if currently going on
 				this.props.dispatch(getContributorsCancel());
 				// Then fetch contributors for newly selected project
-				this.props.dispatch(getContributors(this.props.projects.getIn([selectedProjectIndex, 'contributors_url'])));
+				this.props.dispatch(getContributors(this.props.projects.getIn([selectedProjectIndex, CONTRIBUTORS_URL])));
 			}
 			this.setState({ selectedProjectIndex });
 		}
@@ -64,6 +67,7 @@ class App extends Component {
 			<Fragment>
 				<div className={cx('app-title')}>{getString('app_title')}</div>
 				<div className={cx('app-container')}>
+					{/* Render sidebar and project details side by side when screen width is greater than 600 */}
 					<Desktop>
 						<SidebarNavigation
 							projects={this.props.projects}
@@ -78,6 +82,7 @@ class App extends Component {
 							/>
 						)}
 					</Desktop>
+					{/* Render either sidebar or project details on screen when screen width is less than 601 */}
 					<Mobile>
 						{this.state.isShowingList && (
 							<SidebarNavigation
