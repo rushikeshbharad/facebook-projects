@@ -18,14 +18,17 @@
 .contributor-info {
     display: flex;
     flex-direction: column;
+    width: calc(100% - 96px);
+
 }
 
-.contributor-name {
+.contributor-info .contributor-name {
     font-size: 20px;
     margin-bottom: 8px;
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
+    width: 100%;
 }
 
 .contributor-contributions {
