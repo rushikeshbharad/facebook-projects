@@ -44,7 +44,7 @@
 .contributors {
     display: flex;
     flex-wrap: wrap;
-    max-height: 360px;
+    max-height: 55vh;
     overflow: auto;
 }
 
@@ -63,6 +63,18 @@
 
 .back-navigator-bottom {
     margin: 12px 0;
+}
+
+@media only screen and (max-width: 1200px) {
+    .contributors {
+        max-height: 50vh;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+    .contributors {
+        max-height: 45vh;
+    }
 }
 
 @media only screen and (max-width: 850px) {
@@ -87,5 +99,9 @@
 
     .project-info {
         font-size: 10px;
+    }
+
+    .contributors {
+        max-height: 320px;
     }
 }
