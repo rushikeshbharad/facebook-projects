@@ -1,5 +1,6 @@
 // Library imports
 import React from 'react';
+import PropTypes from 'prop-types';
 import ClassNames from 'classnames/bind';
 
 // Constants import
@@ -22,5 +23,9 @@ const Spinner = ({ classNames }) => (
 	  </svg>
   </div>
 );
+
+Spinner.propTypes = {
+	classNames: PropTypes.string
+};
 
 export default Spinner;

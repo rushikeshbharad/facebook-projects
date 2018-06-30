@@ -6,5 +6,7 @@
   "number_of_contributions": "<%=number=%> contributions",
   "number_of_contributors": "<%=number=%> contributors",
   "number_of_watchers": "<%=number=%> watchers",
-  "number_of_forks": "<%=number=%> forks"
+  "number_of_forks": "<%=number=%> forks",
+  "project_fetch_failure": "Something went wrong, not able to fetch projects",
+  "contributors_fetch_failure": "Something went wrong, not able to fetch contributors"
 }

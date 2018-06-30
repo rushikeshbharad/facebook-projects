@@ -9,6 +9,7 @@ import { List } from 'immutable';
 // Components imports
 import { Mobile, Desktop } from '../../components/reponsive';
 import Spinner from '../../components/spinner';
+import FailureWarning from '../../components/failure-warning';
 
 // Containers imports
 import SidebarNavigation from '../sidebar-navigation';
@@ -67,7 +68,7 @@ class App extends Component {
 		this.props.dispatch(getAllProjects());
 	}
 
-	// Render sidebar and project details side by side when screen width is greater than 600
+	// Render sidebar and project details side by side when screen width is greater than 850
 	renderDesktopContent() {
 		return (
 			<Desktop>
@@ -88,7 +89,7 @@ class App extends Component {
 		);
 	}
 
-	// Render either sidebar or project details on screen when screen width is less than 601
+	// Render either sidebar or project details on screen when screen width is less than 851
 	renderMobileContent() {
 		return (
 			<Mobile>
@@ -121,8 +122,7 @@ class App extends Component {
 
 	render() {
 		if (this.props.projectsStatus === FAILURE) {
-			// handle failure
-			return '';
+			return <FailureWarning text={getString('project_fetch_failure')} />;
 		}
 
 		if (this.props.projectsStatus === FETCHING) {

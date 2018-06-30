@@ -11,10 +11,15 @@ import ProjectInfo from './project-info';
 import ProjectContributors from './project-contributors';
 import BackNavigator from '../../components/back-navigator';
 import Spinner from '../../components/spinner';
+import FailureWarning from '../../components/failure-warning';
 import { Mobile } from '../../components/reponsive';
 
 // Actions imports
 import { getContributors, getContributorsCancel } from '../../actions';
+
+
+// Import i18n string getter
+import { getString } from '../../assets/i18n';
 
 // Constants import
 import {
@@ -91,7 +96,10 @@ class ProjectDetails extends Component {
 				<ProjectHeader {...{ description, gitUrl, homepage, title, createdAt, updatedAt }} />
 				<ProjectInfo {...{ contributors, forksCount, programmingLanguage, watchersCount }}/>
 				{contributorsStatus === FETCHING && <Spinner classNames={cx('contributors-spinner')} />}
-				{contributorsStatus === FAILURE && '' /* add a failure title here */}
+				{contributorsStatus === FAILURE && <FailureWarning
+					classNames={cx('contributors-failure')}
+					text={getString('contributors_fetch_failure')}
+				/>}
 				{contributorsStatus === SUCCESS && <ProjectContributors {...{ contributors }} />}
 				<Mobile>
 					<BackNavigator classNames={cx('back-navigator-bottom')} onClick={ backNavigationHandler } />
