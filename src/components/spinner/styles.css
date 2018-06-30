@@ -2,7 +2,7 @@
     align-items: center;
     display: flex;
     justify-content: center;
-    height: -webkit-fill-available;
+    height: stretch;
     width: 100%;
 }
 

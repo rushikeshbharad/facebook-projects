@@ -1,14 +1,14 @@
 // Library imports
-import React, { Component, Fragment } from 'react';
+import React, { Component } from 'react';
 import { List } from 'immutable';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import ClassNames from 'classnames/bind';
-import moment from 'moment';
 
 // Components imports
-import Contributors from '../../components/contributor';
-import ProjectInfoTab from '../../components/project-info-tab';
+import ProjectHeader from './project-header';
+import ProjectInfo from './project-info';
+import ProjectContributors from './project-contributors';
 import BackNavigator from '../../components/back-navigator';
 import Spinner from '../../components/spinner';
 import { Mobile } from '../../components/reponsive';
@@ -16,14 +16,9 @@ import { Mobile } from '../../components/reponsive';
 // Actions imports
 import { getContributors, getContributorsCancel } from '../../actions';
 
-// I18n import
-import { getString } from '../../assets/i18n';
-
 // Constants import
 import {
-	AVATAR_URL,
 	CONTRIBUTORS_URL,
-	CONTRIBUTIONS,
 	CREATED_AT,
 	DESCRIPTION,
 	FAILURE,
@@ -33,12 +28,7 @@ import {
 	HOMEPAGE,
 	HTML_URL,
 	LANGUAGE,
-	LOGIN,
 	SUCCESS,
-	SVG_PATH_CONTRIBUTORS,
-	SVG_PATH_FORKS,
-	SVG_PATH_PROGRAMMING_LANGUAGE,
-	SVG_PATH_WATCHERS,
 	UPDATED_AT,
 	WATCHERS_COUNT
 } from '../../assets/constants';
@@ -47,62 +37,6 @@ import {
 import styles from './styles.css';
 
 const cx = ClassNames.bind(styles);
-
-const ProjectHeader = ({ description, gitUrl, homepage, title, createdAt, updatedAt }) => (
-	<Fragment>
-		<a href={gitUrl} target="_blank" className={cx('project-title')}>{title}</a>
-		{description && <span className={cx('project-description')}>{description}</span>}
-		{homepage && <a href={homepage} target="_blank" className={cx('project-homepage')}>{homepage}</a>}
-		<div className={cx('project-events')}>
-			<span className={cx('project-created-at')}>
-				{getString(CREATED_AT, { date: moment(createdAt).format('DD MMM YYYY') })}
-			</span>
-			<span className={cx('project-updated-at')}>
-				{getString(UPDATED_AT, { date: moment(updatedAt).format('DD MMM YYYY') })}
-			</span>
-		</div>
-	</Fragment>
-);
-
-const ProjectInfo = ({ contributors, forksCount, programmingLanguage, watchersCount }) => (
-	<div className={cx('project-info')}>
-		<ProjectInfoTab
-			info={getString('number_of_watchers', { number: watchersCount })}
-			path={SVG_PATH_WATCHERS}
-		/>
-		<ProjectInfoTab
-			info={getString('number_of_forks', { number: forksCount })}
-			path={SVG_PATH_FORKS}
-		/>
-		<ProjectInfoTab
-			info={getString('number_of_contributors', { number: contributors.size })}
-			path={SVG_PATH_CONTRIBUTORS}
-		/>
-		<ProjectInfoTab
-			info={programmingLanguage}
-			path={SVG_PATH_PROGRAMMING_LANGUAGE}
-		/>
-	</div>
-);
-
-const ProjectContributors = ({ contributors }) => (
-	<Fragment>
-		<div className={cx('contributors-title')}>
-			{getString('contributors_title', { number: contributors.size })}
-		</div>
-		<div className={cx('contributors')}>
-			{contributors.map(contributor =>
-				<Contributors
-					key={`contributor-${contributor.get(LOGIN)}`}
-					avatarUrl={contributor.get(AVATAR_URL)}
-					contributions={contributor.get(CONTRIBUTIONS)}
-					htmlUrl={contributor.get(HTML_URL)}
-					login={contributor.get(LOGIN)}
-				/>
-			)}
-		</div>
-	</Fragment>
-);
 
 class ProjectDetails extends Component {
 	static defaultProps = {
