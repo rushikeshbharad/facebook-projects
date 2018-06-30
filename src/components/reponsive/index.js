@@ -2,7 +2,7 @@ import React from 'react';
 import MediaQuery from 'react-responsive';
 
 const Mobile = ({ children }) => (
-	<MediaQuery query="(max-device-width: 480px)">{children}</MediaQuery>
+	<MediaQuery query="(max-device-width: 600px)">{children}</MediaQuery>
 );
 
 const Desktop = ({ children }) => (

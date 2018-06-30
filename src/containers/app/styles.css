@@ -14,8 +14,12 @@
     padding: 8px;
 }
 
-@media only screen and (max-width: 480px) {
+@media only screen and (max-width: 600px) {
     .app-container {
         margin: 0;
+    }
+
+    .app-title {
+        margin: 16px 8px 0;
     }
 }

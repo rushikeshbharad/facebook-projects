@@ -1,18 +1,19 @@
 .back-navigator {
     align-items: center;
-    border-radius: 28px;
+    background-color: #727272;
+    border-radius: 18px;
     box-sizing: border-box;
+    color: #eeeeee;
     cursor: pointer;
-    background-color: #eeeeee;
     display: flex;
     font-size: 28px;
-    height: 56px;
+    height: 36px;
     justify-content: center;
     padding: 0 2px 4px 0;
-    width: 56px;
+    width: 36px;
 }
 
 .back-navigator:hover {
-    background-color: #727272;
-    color: #eeeeee;
+    background-color: #eeeeee;
+    color: #727272;
 }
