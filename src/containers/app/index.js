@@ -1,6 +1,6 @@
 // Library imports
 import React, {Component, Fragment} from 'react';
-import PropTypes from 'prop-types';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import ClassNames from 'classnames/bind';
 import { connect } from 'react-redux';
 import { List } from 'immutable';
@@ -33,7 +33,7 @@ class App extends Component {
 	};
 
 	static propTypes = {
-		projects: PropTypes.arrayOf(PropTypes.object)
+		projects: ImmutablePropTypes.listOf(ImmutablePropTypes.map)
 	};
 
 	state = {

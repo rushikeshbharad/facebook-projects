@@ -1,6 +1,7 @@
 // Library imports
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import ImmutablePropTypes from 'react-immutable-proptypes';
 import ClassNames from 'classnames/bind';
 
 // Component imports
@@ -13,7 +14,7 @@ const cx = ClassNames.bind(styles);
 
 class SidebarNavigation extends Component {
 	static propTypes = {
-		projects: PropTypes.arrayOf(PropTypes.object).isRequired,
+		projects: ImmutablePropTypes.listOf(ImmutablePropTypes.map).isRequired,
 		selectedProjectIndex: PropTypes.number.isRequired,
 		updateSelectedProjectIndex: PropTypes.func.isRequired
 	};
