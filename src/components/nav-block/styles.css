@@ -12,6 +12,10 @@
     color: #0366d6;
 }
 
+.nav-block:hover {
+    box-shadow: 1px 1px #aaaaaa, -1px 1px #aaaaaa, 1px -1px #aaaaaa, -1px -1px #aaaaaa;
+}
+
 .nav-block-project-name {
     font-size: 20px;
     margin-bottom: 8px;
