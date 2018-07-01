@@ -1,6 +1,6 @@
 .sidebar-navigator-container {
     box-sizing: border-box;
-    height: 90vh;
+    height: calc(100vh - 72px);
     overflow: auto;
     padding: 0 8px;
     width: 320px;

@@ -44,7 +44,7 @@
 .contributors {
     display: flex;
     flex-wrap: wrap;
-    max-height: 55vh;
+    max-height: calc(100vh - 308px);
     overflow: auto;
 }
 
@@ -67,13 +67,13 @@
 
 @media only screen and (max-width: 1200px) {
     .contributors {
-        max-height: 50vh;
+        max-height: calc(100vh - 326px);
     }
 }
 
 @media only screen and (max-width: 1000px) {
     .contributors {
-        max-height: 45vh;
+        max-height: calc(100vh - 378px);
     }
 }
 
