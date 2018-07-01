@@ -1,6 +1,6 @@
 import { MAX_ENTRIES_PER_PAGE } from '../assets/constants';
 
-export const getAllProjectPromise = (url, pages) => new Promise((resolve, reject) => {
+export const getAllPagesPromise = (url, pages) => new Promise((resolve, reject) => {
 	const executeForSinglePage = (page, totalResponse) => {
 		if (page > pages) {
 			// Resolve total response if current page has exceeded
@@ -16,6 +16,8 @@ export const getAllProjectPromise = (url, pages) => new Promise((resolve, reject
 				}
 
 				reject(r.url);
+			}, () => {
+				reject(url);
 			})
 			.then((r = []) => {
 				if (r.length < MAX_ENTRIES_PER_PAGE) {

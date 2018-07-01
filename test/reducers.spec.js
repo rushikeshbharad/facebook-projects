@@ -23,13 +23,11 @@ import { CANCELLED, FAILURE, FETCHING, SUCCESS} from '../src/assets/constants/in
 describe('#getAllProjects', () => {
 	it('should return provided state as it is if action type is not GET_PROJECTS_SUCCESS', () => {
 		const state = 'mockState';
-		const mockPayload = { a: 'x', b: 'y' };
-		const action = { type: GET_PROJECTS, payload: mockPayload };
-		const result = getAllProjects(state, action);
+		const result = getAllProjects(state);
 		expect(result).to.eq(state);
 	});
 
-	it('should return provided empty List if undefined state is provided with action type other than GET_PROJECTS_SUCCESS', () => {
+	it('should return an empty List if undefined state is provided with action type other than GET_PROJECTS_SUCCESS', () => {
 		const state = undefined;
 		const mockPayload = { a: 'x', b: 'y' };
 		const action = { type: GET_PROJECTS, payload: mockPayload };
@@ -88,10 +86,13 @@ describe('#getProjectsStatus', () => {
 	});
 
 	it('should return provided state if action type is none of the above', () => {
-		const state = SUCCESS;
-		const action = { type: GET_CONTRIBUTORS };
-		const result = getProjectsStatus(state, action);
+		const result = getProjectsStatus(SUCCESS);
 		expect(result).to.eq(SUCCESS);
+	});
+
+	it('should return an empty string if undefined state is provided with action type other than all of the above', () => {
+		const result = getProjectsStatus();
+		expect(result).to.eq('');
 	});
 });
 
@@ -102,6 +103,11 @@ describe('#getContributors', () => {
 		const action = { type: GET_CONTRIBUTORS_SUCCESS, payload: mockPayload };
 		const result = getContributors(state, action);
 		expect(is(result, fromJS(mockPayload))).to.be.true;
+	});
+
+	it('should return an empty List if undefined state is provided with action type other than any of GET_CONTRIBUTORS', () => {
+		const result = getContributors();
+		expect(result.size).to.eq(0);
 	});
 
 	it('should return empty immutable list if action type is GET_CONTRIBUTORS_FAILURE', () => {
@@ -181,5 +187,10 @@ describe('#getContributorsStatus', () => {
 		const action = { type: GET_PROJECTS };
 		const result = getContributorsStatus(state, action);
 		expect(result).to.eq(SUCCESS);
+	});
+
+	it('should return an empty string if undefined state is provided with action type other than all of the above', () => {
+		const result = getContributorsStatus();
+		expect(result).to.eq('');
 	});
 });

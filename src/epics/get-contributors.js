@@ -11,13 +11,13 @@ import { GET_CONTRIBUTORS, GET_CONTRIBUTORS_CANCEL, GET_CONTRIBUTORS_FAILURE } f
 import { MAX_PAGES_FOR_CONTRIBUTORS_API } from '../assets/constants'
 
 // Helper functions import
-import { getAllProjectPromise } from './helper';
+import { getAllPagesPromise } from './helper';
 
 export const getContributors = action$ => action$.pipe(
 	ofType(GET_CONTRIBUTORS),
 	map(({ payload }) => payload),
 	mergeMap(url =>
-		from(getAllProjectPromise(url, MAX_PAGES_FOR_CONTRIBUTORS_API)).pipe(
+		from(getAllPagesPromise(url, MAX_PAGES_FOR_CONTRIBUTORS_API)).pipe(
 			map(data => getContributorsSuccess(data)),
 			takeUntil(action$.pipe(
 				ofType(GET_CONTRIBUTORS_CANCEL)

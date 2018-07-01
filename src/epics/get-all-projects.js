@@ -11,12 +11,12 @@ import { FB_PROJECT_FETCH_URL, MAX_PAGES_FOR_FB_PROJECTS_API } from '../assets/c
 import { getAllProjectsSuccess } from '../actions';
 
 // Helper function imports
-import { getAllProjectPromise } from './helper';
+import { getAllPagesPromise } from './helper';
 
 export const getAllProjects = action$ => action$.pipe(
 	ofType(GET_PROJECTS),
 	mergeMap(() =>
-		from(getAllProjectPromise(FB_PROJECT_FETCH_URL, MAX_PAGES_FOR_FB_PROJECTS_API)).pipe(
+		from(getAllPagesPromise(FB_PROJECT_FETCH_URL, MAX_PAGES_FOR_FB_PROJECTS_API)).pipe(
 			map(data => getAllProjectsSuccess(data))
 		)
 	),

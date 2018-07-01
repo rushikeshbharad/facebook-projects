@@ -28,4 +28,10 @@ describe('#<FailureWarning />', () => {
 		const warningElement = wrapper.getNodesInternal()[0].rendered;
 		expect(warningElement.rendered).to.eq(getString('default_failure_text'));
 	});
+
+	it('should renders with provided warning', () => {
+		const wrapper = shallow(<FailureWarning text="Warning1" />);
+		const warningElement = wrapper.getNodesInternal()[0].rendered;
+		expect(warningElement.rendered).to.eq('Warning1');
+	});
 });
