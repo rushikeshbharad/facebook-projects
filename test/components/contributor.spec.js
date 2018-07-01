@@ -4,7 +4,7 @@ import '../setupEnzyme';
 // library imports
 import React from 'react';
 import { expect } from 'chai';
-import { shallow, render } from 'enzyme';
+import { shallow } from 'enzyme';
 
 // import component
 import Contributor from '../../src/components/contributor';
@@ -28,7 +28,7 @@ describe('#<Contributor />', () => {
 		expect(wrapper.find('span').text()).to.be.eq(getString('number_of_contributions', { number: 2 }));
 	});
 
-	it('should renders ', () => {
+	it('should renders with an element with background image provided', () => {
 		const wrapper = shallow(<Contributor avatarUrl={'https://abc.xyz'} contributions={2} html_url={'https://xyz.abc'} login={'loginId'} />);
 		const style = wrapper.getNodesInternal()[0].rendered.find(a => a.props.className === 'contributor-avatar').props.style;
 		expect(style).to.have.property('backgroundImage', 'url(https://abc.xyz)');
