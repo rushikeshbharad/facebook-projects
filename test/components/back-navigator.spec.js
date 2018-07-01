@@ -4,8 +4,8 @@
 // import { mount } from 'enzyme';
 //
 // // import component
-// import BackNavigator from '../../components/back-navigator';
-
+// import BackNavigator from '../src/components/back-navigator';
+//
 // describe('#<BackNavigator />', () => {
 // 	it('renders with text "<"', () => {
 // 		const wrapper = mount(<BackNavigator />);

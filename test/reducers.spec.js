@@ -3,8 +3,8 @@ import { fromJS, is } from 'immutable';
 import { expect } from 'chai';
 
 // reducers import
-import { getAllProjects, getProjectsStatus } from '../reducers/get-all-projects';
-import { getContributors, getContributorsStatus } from '../reducers/get-contributors';
+import { getAllProjects, getProjectsStatus } from '../src/reducers/get-all-projects';
+import { getContributors, getContributorsStatus } from '../src/reducers/get-contributors';
 
 // action-types import
 import {
@@ -15,10 +15,10 @@ import {
 	GET_PROJECTS,
 	GET_PROJECTS_FAILURE,
 	GET_PROJECTS_SUCCESS
-} from '../assets/constants/action-types';
+} from '../src/assets/constants/action-types';
 
 // API statuses
-import { CANCELLED, FAILURE, FETCHING, SUCCESS} from '../assets/constants';
+import { CANCELLED, FAILURE, FETCHING, SUCCESS} from '../src/assets/constants/index';
 
 describe('#getAllProjects', () => {
 	it('should return provided state as it is if action type is not GET_PROJECTS_SUCCESS', () => {
@@ -27,6 +27,14 @@ describe('#getAllProjects', () => {
 		const action = { type: GET_PROJECTS, payload: mockPayload };
 		const result = getAllProjects(state, action);
 		expect(result).to.be.eq(state);
+	});
+
+	it('should return provided empty List if undefined state is provided with action type other than GET_PROJECTS_SUCCESS', () => {
+		const state = undefined;
+		const mockPayload = { a: 'x', b: 'y' };
+		const action = { type: GET_PROJECTS, payload: mockPayload };
+		const result = getAllProjects(state, action);
+		expect(result.size).to.be.eq(0);
 	});
 
 	it('should return new payload wrapped in immutable object if action type is GET_PROJECTS_SUCCESS', () => {

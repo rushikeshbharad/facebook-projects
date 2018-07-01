@@ -2,7 +2,7 @@
 import { expect } from 'chai';
 
 // i18n getter import
-import { getString } from '../assets/i18n';
+import { getString } from '../src/assets/i18n';
 
 describe('#getString', () => {
 	it('should return provided state as it is if action type is not GET_PROJECTS_SUCCESS', () => {

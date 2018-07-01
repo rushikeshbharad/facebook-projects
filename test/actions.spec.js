@@ -8,7 +8,7 @@ import {
 	getContributorsSuccess,
 	getAllProjects,
 	getAllProjectsSuccess
-} from '../actions';
+} from '../src/actions/index';
 
 // action-types import
 import {
@@ -17,7 +17,7 @@ import {
 	GET_CONTRIBUTORS,
 	GET_CONTRIBUTORS_CANCEL,
 	GET_CONTRIBUTORS_SUCCESS
-} from '../assets/constants/action-types';
+} from '../src/assets/constants/action-types';
 
 describe('#getAllProjects', () => {
 	it('should return type as GET_PROJECTS irrespective of payload', () => {
@@ -43,6 +43,11 @@ describe('#getAllProjectsSuccess', () => {
 		{ watchers: 2841 },
 		{ watchers: 575 }
 	];
+	const mockPayloadSomeEqual = [
+		{ watchers: 354 },
+		{ watchers: 354 },
+		{ watchers: 575 }
+	];
 
 	it('should return type as GET_PROJECTS_SUCCESS irrespective of payload', () => {
 		const result = getAllProjectsSuccess();
@@ -54,6 +59,13 @@ describe('#getAllProjectsSuccess', () => {
 		expect(result.payload[0].watchers).to.be.eq(2841);
 		expect(result.payload[1].watchers).to.be.eq(1024);
 		expect(result.payload[2].watchers).to.be.eq(575);
+	});
+
+	it('should return projects sorted by watchers if unsorted array with some equal numbers is provided', () => {
+		const result = getAllProjectsSuccess(mockPayloadSomeEqual);
+		expect(result.payload[0].watchers).to.be.eq(575);
+		expect(result.payload[1].watchers).to.be.eq(354);
+		expect(result.payload[2].watchers).to.be.eq(354);
 	});
 
 	it('should return projects sorted by watchers if sorted array is provided', () => {
