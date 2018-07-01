@@ -1,14 +1,14 @@
-import { fromJS } from 'immutable';
+import { fromJS, List } from 'immutable';
 import { GET_PROJECTS, GET_PROJECTS_SUCCESS, GET_PROJECTS_FAILURE } from '../assets/constants/action-types';
 import { FAILURE, FETCHING, SUCCESS } from '../assets/constants';
 import { logger, LOGGER_TYPE } from './helper';
 
-export const getAllProjects = (state = [], action = {}) => {
+export const getAllProjects = (state = List(), action = {}) => {
 	if (action.type === GET_PROJECTS_SUCCESS) {
 		return fromJS(action.payload);
 	}
 
-	return fromJS(state);
+	return state;
 };
 
 export const getProjectsStatus = (state = '', action = {}) => {

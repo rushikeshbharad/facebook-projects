@@ -68,11 +68,13 @@ class ProjectDetails extends Component {
 	};
 
 	componentDidMount() {
-		// If contributors are being fetched at the moment,
-		// and next fetch call yet to happen
-		// Then, cancel the previous contributor fetch call
-		this.props.dispatch(getContributorsCancel());
+		// Fetch contributors
 		this.props.dispatch(getContributors(this.props.details.get(CONTRIBUTORS_URL)));
+	}
+
+	componentWillUnmount() {
+		// Cancel fetch contributors if are being fetched at the moment
+		this.props.dispatch(getContributorsCancel());
 	}
 
 	render() {

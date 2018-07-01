@@ -5,7 +5,7 @@ export const getAllProjects = payload => ({
 	payload
 });
 
-export const getAllProjectsSuccess = response => {
+export const getAllProjectsSuccess = (response = []) => {
 	// Projects are being received in response
 	// Below code sorts the projects by the number of watchers
 	const payload = response.sort((p1, p2) => {

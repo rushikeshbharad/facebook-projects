@@ -9,5 +9,6 @@
   "number_of_forks": "<%=number=%> forks",
   "project_fetch_failure": "Something went wrong, not able to fetch projects",
   "contributors_fetch_failure": "Something went wrong, not able to fetch contributors",
-  "default_failure_text": "Something went wrong"
+  "default_failure_text": "Something went wrong",
+  "test_key": "test string <%=parameter1=%>, <%=parameter2=%> and <%=parameter3=%>"
 }
