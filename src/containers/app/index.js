@@ -7,9 +7,9 @@ import { connect } from 'react-redux';
 import { List } from 'immutable';
 
 // Components imports
-import { Mobile, Desktop } from '../../components/reponsive';
 import Spinner from '../../components/spinner';
 import FailureWarning from '../../components/failure-warning';
+import { Mobile, Desktop } from '../../components/reponsive';
 
 // Containers imports
 import SidebarNavigation from '../sidebar-navigation';
@@ -26,7 +26,12 @@ import {
 import { getString } from '../../assets/i18n';
 
 // Import constants
-import { CONTRIBUTORS_URL, FAILURE, FETCHING, SUCCESS } from '../../assets/constants';
+import {
+	CONTRIBUTORS_URL,
+	FAILURE,
+	FETCHING,
+	SUCCESS
+} from '../../assets/constants';
 
 // Styles imports
 import styles from './styles.css';
@@ -49,14 +54,14 @@ class App extends Component {
 		selectedProjectIndex: 0,
 		// We display either project list or project detail screen on mobile view
 		// isShowingList state helps us to decide which screen should be shown
-		isShowingList: true
+		isShowingList: true // Mobile view specific
 	};
 
-	// updateSelectedProjectIndex Maintains the index of currently selected project
+	// updateProjectSelectionIndex maintains the index of currently selected project
 	// and dispatches the action to fetch contributors if index has been changed
-	updateSelectedProjectIndex = (selectedProjectIndex, shouldFetch) => {
+	updateProjectSelectionIndex = (selectedProjectIndex, shouldFetch) => {
 		if (selectedProjectIndex !== this.state.selectedProjectIndex) {
-			// Should fetch contributors for desktop screen
+			// Should fetch contributors only while rendering under desktop screen
 			// Reason:
 			// - Mobile screen shows either project list or project details
 			// - Hence contributors data will be fetched by ProjectDetails component on mounting each time
@@ -81,7 +86,7 @@ class App extends Component {
 				<SidebarNavigation
 					projects={this.props.projects}
 					selectedProjectIndex={this.state.selectedProjectIndex}
-					updateSelectedProjectIndex={index => this.updateSelectedProjectIndex(index, true)}
+					updateProjectSelectionIndex={index => this.updateProjectSelectionIndex(index, true)}
 				/>
 				{this.props.projects.get(this.state.selectedProjectIndex) && (
 					<ProjectDetails
@@ -103,8 +108,8 @@ class App extends Component {
 					<SidebarNavigation
 						projects={this.props.projects}
 						selectedProjectIndex={this.state.selectedProjectIndex}
-						updateSelectedProjectIndex={index => {
-							this.updateSelectedProjectIndex(index, false);
+						updateProjectSelectionIndex={index => {
+							this.updateProjectSelectionIndex(index, false);
 							this.setState({ isShowingList: false });
 						}}
 					/>

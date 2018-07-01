@@ -7,7 +7,12 @@ import ClassNames from 'classnames/bind';
 import Contributors from '../../components/contributor';
 
 // Constants imports
-import { HTML_URL, LOGIN, AVATAR_URL, CONTRIBUTIONS } from '../../assets/constants';
+import {
+	HTML_URL,
+	LOGIN,
+	AVATAR_URL,
+	CONTRIBUTIONS
+} from '../../assets/constants';
 
 // I18n import
 import { getString } from '../../assets/i18n';

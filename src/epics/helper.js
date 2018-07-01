@@ -1,5 +1,8 @@
 import { MAX_ENTRIES_PER_PAGE } from '../assets/constants';
 
+// getAllPagesPromise accepts Github api URL and number of pages needs to be fetched
+// and returns a promise with array of response
+// Need: Github api fetches maximum 100 entries at single API hit
 export const getAllPagesPromise = (url, pages) => new Promise((resolve, reject) => {
 	const executeForSinglePage = (page, totalResponse) => {
 		if (page > pages) {
@@ -25,6 +28,7 @@ export const getAllPagesPromise = (url, pages) => new Promise((resolve, reject) 
 					// if number of entries found to be less than max per page
 					return resolve([...totalResponse, ...r]);
 				}
+				// Add up the response and start fetching next page
 				executeForSinglePage(page + 1, [...totalResponse, ...r]);
 			});
 	};

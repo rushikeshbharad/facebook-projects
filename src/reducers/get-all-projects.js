@@ -1,6 +1,17 @@
+// Library imports
 import { fromJS, List } from 'immutable';
-import { GET_PROJECTS, GET_PROJECTS_SUCCESS, GET_PROJECTS_FAILURE } from '../assets/constants/action-types';
+
+// Action-types imports
+import {
+	GET_PROJECTS,
+	GET_PROJECTS_SUCCESS,
+	GET_PROJECTS_FAILURE
+} from '../assets/constants/action-types';
+
+// Constants from API statuses
 import { FAILURE, FETCHING, SUCCESS } from '../assets/constants';
+
+// Logger helper
 import { logger, LOGGER_TYPE } from './helper';
 
 export const getAllProjects = (state = List(), action = {}) => {

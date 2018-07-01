@@ -26,22 +26,14 @@ const cx = ClassNames.bind(styles);
 
 const ProjectInfo = ({ contributors = List(), forksCount = 0, programmingLanguage, watchersCount = 0 }) => (
 	<div className={cx('project-info')}>
-		<ProjectInfoTab
-			info={getString('number_of_watchers', { number: watchersCount })}
-			path={SVG_PATH_WATCHERS}
-		/>
-		<ProjectInfoTab
-			info={getString('number_of_forks', { number: forksCount })}
-			path={SVG_PATH_FORKS}
-		/>
-		<ProjectInfoTab
-			info={getString('number_of_contributors', { number: contributors.size })}
-			path={SVG_PATH_CONTRIBUTORS}
-		/>
-		<ProjectInfoTab
-			info={programmingLanguage}
-			path={SVG_PATH_PROGRAMMING_LANGUAGE}
-		/>
+		{[
+			{ info: getString('number_of_watchers', { number: watchersCount }) , path: SVG_PATH_WATCHERS },
+			{ info: getString('number_of_forks', { number: forksCount }) , path: SVG_PATH_FORKS },
+			{ info: getString('number_of_contributors', { number: contributors.size }) , path: SVG_PATH_CONTRIBUTORS },
+			{ info: programmingLanguage , path: SVG_PATH_PROGRAMMING_LANGUAGE }
+		].map(({ info, path }, i) => (
+			<ProjectInfoTab key={`project-info-tab${i}`} {...{ info, path }} />
+		))}
 	</div>
 );
 

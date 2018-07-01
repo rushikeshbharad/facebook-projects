@@ -11,7 +11,7 @@ import { shallow } from 'enzyme';
 import SidebarNavigation from '../../src/containers/sidebar-navigation';
 import NavBlock from '../../src/components/nav-block';
 
-describe('#SidebarNavigation', () => {
+describe('#<SidebarNavigation />', () => {
 	const projects = [
 		{ name: 'project1', watchers: 254 },
 		{ name: 'project2', watchers: 156 },
@@ -23,7 +23,7 @@ describe('#SidebarNavigation', () => {
 		const wrapper = shallow(<SidebarNavigation
 			projects={fromJS(projects)}
 			selectedProjectIndex={2}
-			updateSelectedProjectIndex={() => {}}
+			updateProjectSelectionIndex={() => {}}
 		/>);
 		expect(wrapper.find(NavBlock)).to.have.length(4)
 	});
@@ -32,7 +32,7 @@ describe('#SidebarNavigation', () => {
 		const wrapper = shallow(<SidebarNavigation
 			projects={fromJS(projects)}
 			selectedProjectIndex={2}
-			updateSelectedProjectIndex={() => {}}
+			updateProjectSelectionIndex={() => {}}
 		/>);
 		const thirdNavBlock = wrapper.find(NavBlock).getNodesInternal()[2];
 		expect(thirdNavBlock.props.selected).to.be.true;
@@ -42,7 +42,7 @@ describe('#SidebarNavigation', () => {
 		const wrapper = shallow(<SidebarNavigation
 			projects={fromJS(projects)}
 			selectedProjectIndex={2}
-			updateSelectedProjectIndex={() => {}}
+			updateProjectSelectionIndex={() => {}}
 		/>);
 		const thirdNavBlock = wrapper.find(NavBlock).getNodesInternal()[2];
 		expect(thirdNavBlock.props.watchers).to.eq(42);
@@ -57,7 +57,7 @@ describe('#SidebarNavigation', () => {
 		const wrapper = shallow(<SidebarNavigation
 			projects={fromJS(projects)}
 			selectedProjectIndex={2}
-			updateSelectedProjectIndex={getSelectedNavBlockIndex}
+			updateProjectSelectionIndex={getSelectedNavBlockIndex}
 		/>);
 		const thirdNavBlock = wrapper.find(NavBlock).getNodesInternal()[1];
 		thirdNavBlock.props.onSelect(1);

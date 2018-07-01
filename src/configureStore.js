@@ -5,12 +5,22 @@ import rootEpic from './epics';
 
 const epicMiddleware = createEpicMiddleware();
 
+const DEV = window.location.href.includes('localhost');
+
 export default function configureStore() {
-	const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+	const middleWare = () => {
+		if (DEV) {
+			const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+			return composeEnhancers(applyMiddleware(epicMiddleware));
+		}
+
+		return applyMiddleware(epicMiddleware);
+	};
 
 	const store = createStore(
 		rootReducer,
-		composeEnhancers(applyMiddleware(epicMiddleware))
+		middleWare()
 	);
 
 	epicMiddleware.run(rootEpic);

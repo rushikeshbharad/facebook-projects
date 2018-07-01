@@ -1,11 +1,18 @@
+// Library imports
 import { fromJS, List } from 'immutable';
+
+// Action-types imports
 import {
 	GET_CONTRIBUTORS,
 	GET_CONTRIBUTORS_CANCEL,
 	GET_CONTRIBUTORS_FAILURE,
 	GET_CONTRIBUTORS_SUCCESS
 } from '../assets/constants/action-types';
+
+// Constants from API statuses
 import { CANCELLED, FAILURE, FETCHING, SUCCESS } from '../assets/constants';
+
+// Logger helper
 import { logger, LOGGER_TYPE } from './helper';
 
 export const getContributors = (state = List(), action = {}) => {

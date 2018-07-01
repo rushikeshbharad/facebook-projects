@@ -1,5 +1,5 @@
 // Library imports
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 import { List } from 'immutable';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
@@ -77,8 +77,23 @@ class ProjectDetails extends Component {
 		this.props.dispatch(getContributorsCancel());
 	}
 
+	renderContributors() {
+		const { contributors, contributorsStatus } = this.props;
+
+		return (
+			<Fragment>
+				{contributorsStatus === FETCHING && <Spinner classNames={cx('contributors-spinner')} />}
+				{contributorsStatus === FAILURE && <FailureWarning
+					classNames={cx('contributors-failure')}
+					text={getString('contributors_fetch_failure')}
+				/>}
+				{contributorsStatus === SUCCESS && <ProjectContributors {...{ contributors }} />}
+			</Fragment>
+		);
+	}
+
 	render() {
-		const { details, contributors, backNavigationHandler, contributorsStatus } = this.props;
+		const { details, contributors, backNavigationHandler } = this.props;
 		const title = details.get(FULL_NAME);
 		const description = details.get(DESCRIPTION);
 		const homepage = details.get(HOMEPAGE);
@@ -91,17 +106,16 @@ class ProjectDetails extends Component {
 
 		return (
 			<div className={cx('project-details')}>
+				{/*
+				  Back navigator is needed display only for Mobile view,
+				  because mobile view shows either project detail screen or project list
+				*/}
 				<Mobile>
 					<BackNavigator classNames={cx('back-navigator-top')} onClick={ backNavigationHandler } />
 				</Mobile>
 				<ProjectHeader {...{ description, gitUrl, homepage, title, createdAt, updatedAt }} />
 				<ProjectInfo {...{ contributors, forksCount, programmingLanguage, watchersCount }}/>
-				{contributorsStatus === FETCHING && <Spinner classNames={cx('contributors-spinner')} />}
-				{contributorsStatus === FAILURE && <FailureWarning
-					classNames={cx('contributors-failure')}
-					text={getString('contributors_fetch_failure')}
-				/>}
-				{contributorsStatus === SUCCESS && <ProjectContributors {...{ contributors }} />}
+				{this.renderContributors()}
 				<Mobile>
 					<BackNavigator classNames={cx('back-navigator-bottom')} onClick={ backNavigationHandler } />
 				</Mobile>

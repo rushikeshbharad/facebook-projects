@@ -37,3 +37,6 @@ export const FETCHING = 'fetching';
 export const SUCCESS = 'success';
 export const FAILURE = 'failure';
 export const CANCELLED = 'cancelled';
+
+// Back navigator symbol
+export const BACK_SYMBOL = '<';

@@ -17,8 +17,8 @@ import Contributor from '../../src/components/contributor';
 // I18n import
 import { getString } from '../../src/assets/i18n';
 
-describe('#ProjectDetails', () => {
-	describe('#ProjectContributors', () => {
+describe('#<ProjectDetails />', () => {
+	describe('#<ProjectContributors />', () => {
 		const contributors = [
 			{ login: 'abc', avatar_url: 'xyz.abc', contributions: 3, html_url: 'abc.pqr' },
 			{ login: 'def', avatar_url: 'xyz.def', contributions: 3, html_url: 'def.pqr' },
@@ -42,7 +42,7 @@ describe('#ProjectDetails', () => {
 		});
 	});
 
-	describe('#ProjectHeader', () => {
+	describe('#<ProjectHeader />', () => {
 		it('should renders with anchor tag as a provided title when homepage is not provided', () => {
 			const wrapper = shallow(<ProjectHeader title="Title1" />);
 			expect(wrapper.find('a').text()).to.eq('Title1');
@@ -74,7 +74,7 @@ describe('#ProjectDetails', () => {
 		});
 	});
 
-	describe('#ProjectInfo', () => {
+	describe('#<ProjectInfo />', () => {
 		it('should renders 4 ProjectInfoTab components', () => {
 			const wrapper = shallow(<ProjectInfo />);
 			expect(wrapper.find(ProjectInfoTab)).to.have.length(4);

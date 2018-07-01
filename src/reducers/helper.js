@@ -12,6 +12,10 @@ const colorParameters = {
 	3: 'color: #d6d60a'
 };
 
+// Logs the provided text with timestamp in color depending on type of action
+// FETCHING, SUCCESS: readable Green
+// CANCELLED: readable yellow
+// FAILURE: readable red
 export const logger = (text, type) => {
-	console.log(`%c ${text} `, colorParameters[type]);
+	console.log(`%c ${new Date().getTime()} - ${text} `, colorParameters[type]);
 };

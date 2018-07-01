@@ -15,7 +15,7 @@ import styles from './styles.css';
 
 const cx = ClassNames.bind(styles);
 
-const SidebarNavigation = ({ projects, selectedProjectIndex, updateSelectedProjectIndex }) => {
+const SidebarNavigation = ({ projects, selectedProjectIndex, updateProjectSelectionIndex }) => {
 	return (
 		<div className={cx('sidebar-navigator-container')}>
 			{projects.map((project, i) =>
@@ -25,7 +25,7 @@ const SidebarNavigation = ({ projects, selectedProjectIndex, updateSelectedProje
 					watchers={project.get(WATCHERS)}
 					selected={selectedProjectIndex === i}
 					onSelect={() => {
-						updateSelectedProjectIndex(i);
+						updateProjectSelectionIndex(i);
 					}}
 				/>
 			)}
@@ -36,7 +36,7 @@ const SidebarNavigation = ({ projects, selectedProjectIndex, updateSelectedProje
 SidebarNavigation.propTypes = {
 	projects: ImmutablePropTypes.listOf(ImmutablePropTypes.map).isRequired,
 	selectedProjectIndex: PropTypes.number.isRequired,
-	updateSelectedProjectIndex: PropTypes.func.isRequired
+	updateProjectSelectionIndex: PropTypes.func.isRequired
 };
 
 export default SidebarNavigation;
