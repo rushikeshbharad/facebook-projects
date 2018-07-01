@@ -2,13 +2,13 @@
 import React, { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import ClassNames from 'classnames/bind';
-import moment from "moment/moment";
+import moment from 'moment/moment';
 
 // Constants imports
-import { CREATED_AT, UPDATED_AT } from "../../assets/constants";
+import { CREATED_AT, UPDATED_AT } from '../../assets/constants';
 
 // I18n import
-import { getString } from "../../assets/i18n";
+import { getString } from '../../assets/i18n';
 
 // Styles import
 import styles from './styles.css';
