@@ -22,13 +22,13 @@ import {
 describe('#getAllProjects', () => {
 	it('should return type as GET_PROJECTS irrespective of payload', () => {
 		const result = getAllProjects();
-		expect(result.type).to.be.eq(GET_PROJECTS);
+		expect(result.type).to.eq(GET_PROJECTS);
 	});
 
 	it('should return passed payload', () => {
 		const mockPayload = 'mockPayload';
 		const result = getAllProjects(mockPayload);
-		expect(result.payload).to.be.eq(mockPayload);
+		expect(result.payload).to.eq(mockPayload);
 	});
 });
 
@@ -51,64 +51,64 @@ describe('#getAllProjectsSuccess', () => {
 
 	it('should return type as GET_PROJECTS_SUCCESS irrespective of payload', () => {
 		const result = getAllProjectsSuccess();
-		expect(result.type).to.be.eq(GET_PROJECTS_SUCCESS);
+		expect(result.type).to.eq(GET_PROJECTS_SUCCESS);
 	});
 
 	it('should return projects sorted by watchers if unsorted array is provided', () => {
 		const result = getAllProjectsSuccess(mockPayloadUnsorted);
-		expect(result.payload[0].watchers).to.be.eq(2841);
-		expect(result.payload[1].watchers).to.be.eq(1024);
-		expect(result.payload[2].watchers).to.be.eq(575);
+		expect(result.payload[0].watchers).to.eq(2841);
+		expect(result.payload[1].watchers).to.eq(1024);
+		expect(result.payload[2].watchers).to.eq(575);
 	});
 
 	it('should return projects sorted by watchers if unsorted array with some equal numbers is provided', () => {
 		const result = getAllProjectsSuccess(mockPayloadSomeEqual);
-		expect(result.payload[0].watchers).to.be.eq(575);
-		expect(result.payload[1].watchers).to.be.eq(354);
-		expect(result.payload[2].watchers).to.be.eq(354);
+		expect(result.payload[0].watchers).to.eq(575);
+		expect(result.payload[1].watchers).to.eq(354);
+		expect(result.payload[2].watchers).to.eq(354);
 	});
 
 	it('should return projects sorted by watchers if sorted array is provided', () => {
 		const result = getAllProjectsSuccess(mockPayloadSorted);
-		expect(result.payload).to.be.eq(mockPayloadSorted);
+		expect(result.payload).to.eq(mockPayloadSorted);
 	});
 });
 
 describe('#getContributors', () => {
 	it('should return type as GET_CONTRIBUTORS irrespective of payload', () => {
 		const result = getContributors();
-		expect(result.type).to.be.eq(GET_CONTRIBUTORS);
+		expect(result.type).to.eq(GET_CONTRIBUTORS);
 	});
 
 	it('should return passed payload as it is against payload key', () => {
 		const mockPayload = 'mockPayload';
 		const result = getContributors(mockPayload);
-		expect(result.payload).to.be.eq(mockPayload);
+		expect(result.payload).to.eq(mockPayload);
 	});
 });
 
 describe('#getContributorsSuccess', () => {
 	it('should return type as GET_CONTRIBUTORS irrespective of payload', () => {
 		const result = getContributorsSuccess();
-		expect(result.type).to.be.eq(GET_CONTRIBUTORS_SUCCESS);
+		expect(result.type).to.eq(GET_CONTRIBUTORS_SUCCESS);
 	});
 
 	it('should return passed payload as it is against payload key', () => {
 		const mockPayload = 'mockPayload';
 		const result = getContributorsSuccess(mockPayload);
-		expect(result.payload).to.be.eq(mockPayload);
+		expect(result.payload).to.eq(mockPayload);
 	});
 });
 
 describe('#getContributorsCancel', () => {
 	it('should return type as GET_CONTRIBUTORS_CANCEL irrespective of payload', () => {
 		const result = getContributorsCancel();
-		expect(result.type).to.be.eq(GET_CONTRIBUTORS_CANCEL);
+		expect(result.type).to.eq(GET_CONTRIBUTORS_CANCEL);
 	});
 
 	it('should return object with only one key: type', () => {
 		const result = getContributorsCancel();
 		expect(Object.keys(result)).to.have.length(1);
-		expect(Object.keys(result)[0]).to.be.eq('type');
+		expect(Object.keys(result)[0]).to.eq('type');
 	});
 });

@@ -26,6 +26,6 @@ describe('#<FailureWarning />', () => {
 	it('should renders with default failure warning if text is not provided', () => {
 		const wrapper = shallow(<FailureWarning />);
 		const warningElement = wrapper.getNodesInternal()[0].rendered;
-		expect(warningElement.rendered).to.be.eq(getString('default_failure_text'));
+		expect(warningElement.rendered).to.eq(getString('default_failure_text'));
 	});
 });

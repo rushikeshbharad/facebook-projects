@@ -15,7 +15,7 @@ import { getString } from '../../src/assets/i18n';
 describe('#<Contributor />', () => {
 	it('should renders an anchor tag with login name as text', () => {
 		const wrapper = shallow(<Contributor avatarUrl={'https://abc.xyz'} contributions={2} html_url={'https://xyz.abc'} login={'loginId'} />);
-		expect(wrapper.find('a').text()).to.be.eq('loginId');
+		expect(wrapper.find('a').text()).to.eq('loginId');
 	});
 
 	it('should renders an anchor tag with provided href', () => {
@@ -25,7 +25,7 @@ describe('#<Contributor />', () => {
 
 	it('should renders with a span with number of contributions the developer has made', () => {
 		const wrapper = shallow(<Contributor avatarUrl={'https://abc.xyz'} contributions={2} html_url={'https://xyz.abc'} login={'loginId'} />);
-		expect(wrapper.find('span').text()).to.be.eq(getString('number_of_contributions', { number: 2 }));
+		expect(wrapper.find('span').text()).to.eq(getString('number_of_contributions', { number: 2 }));
 	});
 
 	it('should renders with an element with background image provided', () => {

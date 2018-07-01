@@ -26,7 +26,7 @@ describe('#getAllProjects', () => {
 		const mockPayload = { a: 'x', b: 'y' };
 		const action = { type: GET_PROJECTS, payload: mockPayload };
 		const result = getAllProjects(state, action);
-		expect(result).to.be.eq(state);
+		expect(result).to.eq(state);
 	});
 
 	it('should return provided empty List if undefined state is provided with action type other than GET_PROJECTS_SUCCESS', () => {
@@ -34,7 +34,7 @@ describe('#getAllProjects', () => {
 		const mockPayload = { a: 'x', b: 'y' };
 		const action = { type: GET_PROJECTS, payload: mockPayload };
 		const result = getAllProjects(state, action);
-		expect(result.size).to.be.eq(0);
+		expect(result.size).to.eq(0);
 	});
 
 	it('should return new payload wrapped in immutable object if action type is GET_PROJECTS_SUCCESS', () => {
@@ -66,7 +66,7 @@ describe('#getProjectsStatus', () => {
 		disableLog();
 		const result = getProjectsStatus(state, action);
 		enableLog();
-		expect(result).to.be.eq(FETCHING);
+		expect(result).to.eq(FETCHING);
 	});
 
 	it('should return failure if action type is GET_PROJECTS_FAILURE', () => {
@@ -75,7 +75,7 @@ describe('#getProjectsStatus', () => {
 		disableLog();
 		const result = getProjectsStatus(state, action);
 		enableLog();
-		expect(result).to.be.eq(FAILURE);
+		expect(result).to.eq(FAILURE);
 	});
 
 	it('should return success if action type is GET_PROJECTS_SUCCESS', () => {
@@ -84,14 +84,14 @@ describe('#getProjectsStatus', () => {
 		disableLog();
 		const result = getProjectsStatus(state, action);
 		enableLog();
-		expect(result).to.be.eq(SUCCESS);
+		expect(result).to.eq(SUCCESS);
 	});
 
 	it('should return provided state if action type is none of the above', () => {
 		const state = SUCCESS;
 		const action = { type: GET_CONTRIBUTORS };
 		const result = getProjectsStatus(state, action);
-		expect(result).to.be.eq(SUCCESS);
+		expect(result).to.eq(SUCCESS);
 	});
 });
 
@@ -108,14 +108,14 @@ describe('#getContributors', () => {
 		const state = 'mockState';
 		const action = { type: GET_CONTRIBUTORS_FAILURE };
 		const result = getContributors(state, action);
-		expect(result.size).to.be.eq(0);
+		expect(result.size).to.eq(0);
 	});
 
 	it('should return empty immutable list if action type is GET_CONTRIBUTORS_CANCEL', () => {
 		const state = 'mockState';
 		const action = { type: GET_CONTRIBUTORS_CANCEL };
 		const result = getContributors(state, action);
-		expect(result.size).to.be.eq(0);
+		expect(result.size).to.eq(0);
 	});
 
 	it('should return provided state as it is if action type is none of above', () => {
@@ -123,7 +123,7 @@ describe('#getContributors', () => {
 		const mockPayload = { a: 'x', b: 'y' };
 		const action = { type: GET_PROJECTS, payload: mockPayload };
 		const result = getContributors(state, action);
-		expect(result).to.be.eq(state);
+		expect(result).to.eq(state);
 	});
 });
 
@@ -146,7 +146,7 @@ describe('#getContributorsStatus', () => {
 		disableLog();
 		const result = getContributorsStatus(state, action);
 		enableLog();
-		expect(result).to.be.eq(FETCHING);
+		expect(result).to.eq(FETCHING);
 	});
 
 	it('should return failure if action type is GET_CONTRIBUTORS_FAILURE', () => {
@@ -155,7 +155,7 @@ describe('#getContributorsStatus', () => {
 		disableLog();
 		const result = getContributorsStatus(state, action);
 		enableLog();
-		expect(result).to.be.eq(FAILURE);
+		expect(result).to.eq(FAILURE);
 	});
 
 	it('should return success if action type is GET_CONTRIBUTORS_SUCCESS', () => {
@@ -164,7 +164,7 @@ describe('#getContributorsStatus', () => {
 		disableLog();
 		const result = getContributorsStatus(state, action);
 		enableLog();
-		expect(result).to.be.eq(SUCCESS);
+		expect(result).to.eq(SUCCESS);
 	});
 
 	it('should return cancelled if action type is GET_CONTRIBUTORS_CANCEL', () => {
@@ -173,13 +173,13 @@ describe('#getContributorsStatus', () => {
 		disableLog();
 		const result = getContributorsStatus(state, action);
 		enableLog();
-		expect(result).to.be.eq(CANCELLED);
+		expect(result).to.eq(CANCELLED);
 	});
 
 	it('should return provided state if action type is none of the above', () => {
 		const state = SUCCESS;
 		const action = { type: GET_PROJECTS };
 		const result = getContributorsStatus(state, action);
-		expect(result).to.be.eq(SUCCESS);
+		expect(result).to.eq(SUCCESS);
 	});
 });
