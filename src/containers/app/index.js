@@ -67,7 +67,9 @@ class App extends Component {
 			// - Hence contributors data will be fetched by ProjectDetails component on mounting each time
 			if (shouldFetch) {
 				// Cancel contribution fetching if currently going on
-				this.props.dispatch(getContributorsCancel());
+				if (this.props.contributorsStatus === FETCHING) {
+          this.props.dispatch(getContributorsCancel());
+				}
 				// Then fetch contributors for newly selected project
 				this.props.dispatch(getContributors(this.props.projects.getIn([selectedProjectIndex, CONTRIBUTORS_URL])));
 			}

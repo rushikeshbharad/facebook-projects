@@ -74,7 +74,9 @@ class ProjectDetails extends Component {
 
 	componentWillUnmount() {
 		// Cancel fetch contributors if are being fetched at the moment
-		this.props.dispatch(getContributorsCancel());
+		if (this.props.contributorsStatus === FETCHING) {
+      this.props.dispatch(getContributorsCancel());
+		}
 	}
 
 	renderContributors() {

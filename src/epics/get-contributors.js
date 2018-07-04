@@ -21,11 +21,11 @@ export const getContributors = action$ => action$.pipe(
 			map(data => getContributorsSuccess(data)),
 			takeUntil(action$.pipe(
 				ofType(GET_CONTRIBUTORS_CANCEL)
-			))
+			)),
+      catchError(error => of({
+        type: GET_CONTRIBUTORS_FAILURE,
+        payload: error
+      }))
 		)
-	),
-	catchError(error => of({
-		type: GET_CONTRIBUTORS_FAILURE,
-		payload: error
-	}))
+	)
 );
