@@ -27,6 +27,8 @@ import { getString } from '../../assets/i18n';
 
 // Import constants
 import {
+  CONTRIBUTORS,
+  CONTRIBUTORS_STATUS,
 	CONTRIBUTORS_URL,
 	FAILURE,
 	FETCHING,
@@ -66,12 +68,12 @@ class App extends Component {
 			// - Mobile screen shows either project list or project details
 			// - Hence contributors data will be fetched by ProjectDetails component on mounting each time
 			if (shouldFetch) {
-				// Cancel contribution fetching if currently going on
-				if (this.props.contributorsStatus === FETCHING) {
+        // Cancel contribution fetching if currently going on
+        if (this.props.projects.getIn([this.state.selectedProjectIndex, CONTRIBUTORS_STATUS]) === FETCHING) {
           this.props.dispatch(getContributorsCancel());
-				}
-				// Then fetch contributors for newly selected project
-				this.props.dispatch(getContributors(this.props.projects.getIn([selectedProjectIndex, CONTRIBUTORS_URL])));
+        }
+				// Fetch contributors for newly selected project
+				this.props.dispatch(getContributors(selectedProjectIndex, this.props.projects.getIn([selectedProjectIndex, CONTRIBUTORS_URL])));
 			}
 			this.setState({ selectedProjectIndex });
 		}
@@ -93,9 +95,10 @@ class App extends Component {
 				{this.props.projects.get(this.state.selectedProjectIndex) && (
 					<ProjectDetails
 						details={this.props.projects.get(this.state.selectedProjectIndex)}
-						contributors={this.props.contributors}
+            contributors={this.props.projects.getIn([this.state.selectedProjectIndex, CONTRIBUTORS])}
 						dispatch={this.props.dispatch}
-						contributorsStatus={this.props.contributorsStatus}
+            contributorsStatus={this.props.projects.getIn([this.state.selectedProjectIndex, CONTRIBUTORS_STATUS])}
+						projectIndex={this.state.selectedProjectIndex}
 					/>
 				)}
 			</Desktop>
@@ -121,12 +124,13 @@ class App extends Component {
 				&& (
 					<ProjectDetails
 						details={this.props.projects.get(this.state.selectedProjectIndex)}
-						contributors={this.props.contributors}
+						contributors={this.props.projects.getIn([this.state.selectedProjectIndex, CONTRIBUTORS])}
 						dispatch={this.props.dispatch}
-						contributorsStatus={this.props.contributorsStatus}
+						contributorsStatus={this.props.projects.getIn([this.state.selectedProjectIndex, CONTRIBUTORS_STATUS])}
 						backNavigationHandler={() => {
 							this.setState({ isShowingList: true });
 						}}
+            projectIndex={this.state.selectedProjectIndex}
 					/>
 				)}
 			</Mobile>

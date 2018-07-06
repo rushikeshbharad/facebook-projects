@@ -18,6 +18,8 @@ export const SVG_PATH_SPINNER = 'M266.667,0C121.485,0,3.407,116.022,0.079,260.40
 // Data iterator keys, needed for accessing values from redux store
 export const AVATAR_URL = 'avatar_url';
 export const CONTRIBUTIONS = 'contributions';
+export const CONTRIBUTORS = 'contributors';
+export const CONTRIBUTORS_STATUS = 'contributors_status';
 export const CONTRIBUTORS_URL = 'contributors_url';
 export const CREATED_AT = 'created_at';
 export const DESCRIPTION = 'description';

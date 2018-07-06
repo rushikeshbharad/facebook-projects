@@ -33,7 +33,6 @@ import {
 	HOMEPAGE,
 	HTML_URL,
 	LANGUAGE,
-	SUCCESS,
 	UPDATED_AT,
 	WATCHERS_COUNT
 } from '../../assets/constants';
@@ -54,7 +53,6 @@ class ProjectDetails extends Component {
 			description: PropTypes.string,
 			homepage: PropTypes.string,
 			html_url: PropTypes.string,
-			contributors: PropTypes.array,
 			created_at: PropTypes.string,
 			update_at: PropTypes.string,
 			watchers_count: PropTypes.number,
@@ -64,12 +62,13 @@ class ProjectDetails extends Component {
 		contributors: ImmutablePropTypes.listOf(ImmutablePropTypes.map),
 		contributorsStatus: PropTypes.string,
 		backNavigationHandler: PropTypes.func,
-		dispatch: PropTypes.func
+		dispatch: PropTypes.func,
+    projectIndex: PropTypes.number
 	};
 
 	componentDidMount() {
 		// Fetch contributors
-		this.props.dispatch(getContributors(this.props.details.get(CONTRIBUTORS_URL)));
+    this.props.dispatch(getContributors(this.props.projectIndex, this.props.details.get(CONTRIBUTORS_URL)));
 	}
 
 	componentWillUnmount() {
@@ -84,12 +83,12 @@ class ProjectDetails extends Component {
 
 		return (
 			<Fragment>
-				{contributorsStatus === FETCHING && <Spinner classNames={cx('contributors-spinner')} />}
+				{!contributors.size && contributorsStatus === FETCHING && <Spinner classNames={cx('contributors-spinner')} />}
 				{contributorsStatus === FAILURE && <FailureWarning
 					classNames={cx('contributors-failure')}
 					text={getString('contributors_fetch_failure')}
 				/>}
-				{contributorsStatus === SUCCESS && <ProjectContributors {...{ contributors }} />}
+				{!!contributors.size && <ProjectContributors {...{ contributors }} />}
 			</Fragment>
 		);
 	}

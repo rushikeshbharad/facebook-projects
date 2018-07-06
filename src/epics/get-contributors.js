@@ -15,13 +15,13 @@ import { getAllPagesPromise } from './helper';
 
 export const getContributors = action$ => action$.pipe(
 	ofType(GET_CONTRIBUTORS),
-	map(({ payload }) => payload),
-	mergeMap(url =>
+	map(({ payload, projectId }) => ({ projectId, payload })),
+	mergeMap(({ projectId, payload: url }) =>
 		from(getAllPagesPromise(url, MAX_PAGES_FOR_CONTRIBUTORS_API)).pipe(
-			map(data => getContributorsSuccess(data)),
-			takeUntil(action$.pipe(
-				ofType(GET_CONTRIBUTORS_CANCEL)
-			)),
+			map(data => getContributorsSuccess(projectId, data)),
+      takeUntil(action$.pipe(
+        ofType(GET_CONTRIBUTORS_CANCEL)
+      )),
       catchError(error => of({
         type: GET_CONTRIBUTORS_FAILURE,
         payload: error

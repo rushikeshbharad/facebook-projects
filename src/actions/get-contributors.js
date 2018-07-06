@@ -4,14 +4,16 @@ import {
 	GET_CONTRIBUTORS_CANCEL
 } from '../assets/constants/action-types';
 
-export const getContributors = payload => ({
+export const getContributors = (projectId, payload) => ({
 	type: GET_CONTRIBUTORS,
-	payload
+	payload,
+  projectId
 });
 
-export const getContributorsSuccess = payload => ({
+export const getContributorsSuccess = (projectId, payload) => ({
 	type: GET_CONTRIBUTORS_SUCCESS,
-	payload
+	payload,
+  projectId
 });
 
 export const getContributorsCancel = () => ({
